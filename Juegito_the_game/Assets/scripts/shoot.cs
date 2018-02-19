@@ -15,7 +15,6 @@ public class shoot : MonoBehaviour {
     public float shotCharge = 0;
     public bool onFloor = false;
     public int ultCharge = 0;
-
     private float timer = 0;
     private bool joyStick;
   
@@ -41,7 +40,7 @@ public class shoot : MonoBehaviour {
             if (DirectionJoyL == new Vector2(0, 0))
                 DirectionJoyL = new Vector2(1, 0); // multiplicat that for 1 or -1 depending on were are you facing!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            SpawnUllet();
+            SpawnBullet();
             timer = 0;
 
             // add force to the oposite direction where you are shoting to create this "jetpack" effect.
@@ -57,20 +56,24 @@ public class shoot : MonoBehaviour {
     void FixedUpdate()
     {
         // movment of the player, in axe x to make him walks and jump
-        if (Input.GetButtonDown("XboxA")&& onFloor==true)
-        {
-            onFloor = false;
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * movementSpeed  * jump);
-        }
 
-        GetComponent<Rigidbody2D>().AddForce(DirectionJoyL.x * new Vector2( 1, 0 ) * movementSpeed);
+        if (Input.GetAxis("LeftJoyY") != -1)
+        {
+            if (Input.GetButtonDown("XboxA") && onFloor == true)
+            {
+                onFloor = false;
+                GetComponent<Rigidbody2D>().AddForce(Vector2.up * movementSpeed * jump);
+            }
+
+        }
+        GetComponent<Rigidbody2D>().AddForce(DirectionJoyL.x * new Vector2(1, 0) * movementSpeed);
     }
 
     //this function spawns bullets and destroys them after 3 seconds
-    void SpawnUllet()
+    void SpawnBullet()
     {
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position + new Vector3(10.7f, 0.5f, 0), transform.rotation);
-        Destroy(bullet, 3);
+        Destroy(bullet, 3);//Cambiar on collision con los bordes del mapa
 
     }
 

@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class ballMovement : MonoBehaviour {
 
+    public GameObject player;
     public Rigidbody2D rb;
     public Rigidbody2D otherRb;
     public float speed;
     public float k;
     private Vector2 direction;
-    private float charge;
+    public float charge;
     private float maxCharge;
     private Vector2 force;
-    private int ult;
+    public int ult;
     private float size;
 
     void Awake () {
-        direction = GameObject.Find("ThePlayer").GetComponent<shoot>().DirectionJoyL;
-        charge = GameObject.Find("ThePlayer").GetComponent<shoot>().shotCharge;
-        maxCharge = GameObject.Find("ThePlayer").GetComponent<shoot>().maxCharge;
+
+        player = GameObject.Find("ThePlayer");
+        direction = player.GetComponent<shoot>().DirectionJoyL;
+        charge = player.GetComponent<shoot>().shotCharge;
+        maxCharge = player.GetComponent<shoot>().maxCharge;
         rb = GetComponent<Rigidbody2D>();
-        ult = GameObject.Find("ThePlayer").GetComponent<shoot>().ultCharge;
+        ult = player.GetComponent<shoot>().ultCharge;
 
         calculateSize();
 
@@ -32,7 +35,7 @@ public class ballMovement : MonoBehaviour {
     }
 
         // Update is called once per frame
-        void Update () {
+    void Update () {
         
 	}
 
@@ -48,10 +51,10 @@ public class ballMovement : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.name != "ThePlayer") { 
+        if (other.gameObject.name != player.name) { 
             if (other.gameObject.tag == "Player"){
-                if(GameObject.Find("ThePlayer").GetComponent<shoot>().ultCharge < 100)
-                    GameObject.Find("ThePlayer").GetComponent<shoot>().ultCharge += 2;
+              if(player.GetComponent<shoot>().ultCharge < 100)
+                  player.GetComponent<shoot>().ultCharge += 2;
 
                 otherRb = other.gameObject.GetComponent<Rigidbody2D>();
                 otherRb.AddForce(force);
