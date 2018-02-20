@@ -34,7 +34,6 @@ public class ballMovement : MonoBehaviour {
         rb.AddForce(force);
     }
 
-        // Update is called once per frame
     void Update () {
         
 	}
@@ -51,7 +50,7 @@ public class ballMovement : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.name != player.name) { 
+        if (other.gameObject != player) { 
             if (other.gameObject.tag == "Player"){
               if(player.GetComponent<shoot>().ultCharge < 100)
                   player.GetComponent<shoot>().ultCharge += 2;
