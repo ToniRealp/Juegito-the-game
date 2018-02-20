@@ -5,6 +5,7 @@ using UnityEngine;
 public class shoot : MonoBehaviour {
 
     public GameObject bulletPrefab;
+    public GameObject ultiPrefab;
     public float cadency;
     public float bulletForce;
     public int movementSpeed;
@@ -50,7 +51,18 @@ public class shoot : MonoBehaviour {
             shotCharge = 0;
         }
 
+        if(Input.GetAxis("LT") != 0 && ultCharge == 100)
+        {
+            if (DirectionJoyL == new Vector2(0, 0))
+                DirectionJoyL = new Vector2(1, 0);
+
+            SpawnUlt();
+            ultCharge = 0;
+        }
+        
         timer += Time.deltaTime;
+        if (ultCharge > 100)
+            ultCharge = 100;
     }
 
     void FixedUpdate()
@@ -75,6 +87,11 @@ public class shoot : MonoBehaviour {
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position + new Vector3(10.7f, 0.5f, 0), transform.rotation);
         Destroy(bullet, 3);//Cambiar on collision con los bordes del mapa
 
+    }
+
+    void SpawnUlt()
+    {
+        GameObject ulti = (GameObject)Instantiate(ultiPrefab, GetComponent<Rigidbody2D>().transform.position , transform.rotation);
     }
 
     //this is only used to make sure that the player can only jump 1 time, the code does so cheking if he is on the flor or not

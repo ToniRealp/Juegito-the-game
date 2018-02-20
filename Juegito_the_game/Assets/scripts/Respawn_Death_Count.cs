@@ -6,12 +6,17 @@ public class Respawn_Death_Count : MonoBehaviour {
 
     public int deaths = 0;
     public bool die = false;
+    public GameObject lastHitMe;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Limits"){ 
             deaths = deaths + 1;
             die = true;
+        }
+
+        if (collision.gameObject.tag == "Bullet") {
+            lastHitMe = collision.GetComponent<ballMovement>().player;
         }
     }
     
@@ -24,7 +29,7 @@ public class Respawn_Death_Count : MonoBehaviour {
         if (die)
         {
             GetComponent<Rigidbody2D>().transform.position = new Vector2(0,3.2f);
-
+            lastHitMe.GetComponent<shoot>().ultCharge += 33;
             die = false;
         } 
 
