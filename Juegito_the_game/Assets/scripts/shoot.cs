@@ -55,18 +55,7 @@ public class shoot : MonoBehaviour {
 
     void FixedUpdate()
     {
-        // movment of the player, in axe x to make him walks and jump
-
-        if (Input.GetAxis("LeftJoyY") != -1)
-        {
-            if (Input.GetButtonDown("XboxA") && onFloor == true)
-            {
-                onFloor = false;
-                GetComponent<Rigidbody2D>().AddForce(Vector2.up * movementSpeed * jump);
-            }
-
-        }
-        GetComponent<Rigidbody2D>().AddForce(DirectionJoyL.x * new Vector2(1, 0) * movementSpeed);
+        
     }
 
     //this function spawns bullets and destroys them after 3 seconds
