@@ -25,7 +25,10 @@ public class ballMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         ult = player.GetComponent<shoot>().ultCharge;
 
-        calculateSize();
+        if (gameObject.tag != "Ulti")
+        {
+            calculateSize();
+        }
 
         if (charge < 0.3)
             charge = 0.3f;
@@ -56,6 +59,10 @@ public class ballMovement : MonoBehaviour {
                   player.GetComponent<shoot>().ultCharge += 2;
 
                 otherRb = other.gameObject.GetComponent<Rigidbody2D>();
+                if (gameObject.tag == "Ulti")
+                {
+                    Destroy(other.gameObject);
+                }
                 otherRb.AddForce(force);
                 Destroy(gameObject);
             }
