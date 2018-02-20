@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rbd2d;
     private Animator animator;
 
-    private bool facingRight;
+    public bool facingRight;
     float facingRightFloat;
 
     private bool grounded;
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour {
 
     private void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
+        horizontal = Input.GetAxis("LeftJoyX");
         HandleInput();
     }
 
@@ -106,9 +106,9 @@ public class PlayerController : MonoBehaviour {
             animator.SetFloat("speed", 0f);
         }
 
-        if (floored)
+        if (floored && !animator.GetCurrentAnimatorStateInfo(0).IsTag("land"))
         {
-            rbd2d.velocity = Vector2.zero; 
+            rbd2d.velocity = new Vector2(0, rbd2d.velocity.y); 
         }
 
     }
@@ -123,30 +123,30 @@ public class PlayerController : MonoBehaviour {
 
     private void HandleInput()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
+        if ( GetComponent<shoot>().shoting && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             attacking = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        if (Input.GetAxis("LeftJoyY") == -1 && !Input.GetButton("LB"))
         {
             crouching = true;
-        } else if (Input.GetKeyUp(KeyCode.LeftAlt))
+        } else 
         {
             crouching = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightAlt))
+        if (Input.GetAxis("LT") != 0)
         {
             floored = true;
         }
-        else if (Input.GetKeyUp(KeyCode.RightAlt))
+        else 
         {
             floored = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("XboxA") && !crouching)
         {
             jumping = true;
         }
