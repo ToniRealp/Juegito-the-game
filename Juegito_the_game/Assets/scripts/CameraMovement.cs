@@ -13,6 +13,7 @@ public class CameraMovement : MonoBehaviour {
 
     public float cameraSpeed;
     public float Yoffset;
+    public float sizeOfsset;
     public float maxSize;
     public float minSize;
 
@@ -26,7 +27,7 @@ public class CameraMovement : MonoBehaviour {
         updatePlayers();
         cameraPosition();
         float movement = cameraSpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, mid + new Vector3(0, 0, -1), movement);
+        transform.position = Vector3.MoveTowards(transform.position, mid + new Vector3(0, Yoffset, -1), movement);
 
     }
 
@@ -62,7 +63,7 @@ public class CameraMovement : MonoBehaviour {
                 separation = (playersT[i].position - playersT[i - 1].position).magnitude;
         }
         mid = mid / numPlayers;
-        gameObject.GetComponent<Camera>().orthographicSize = (separation + Ycenter() + Yoffset ) / 1.8f;
+        gameObject.GetComponent<Camera>().orthographicSize = (separation + Ycenter() + sizeOfsset) / 1.8f;
 
 
         if (gameObject.GetComponent<Camera>().orthographicSize < minSize)
