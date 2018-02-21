@@ -12,14 +12,30 @@ public class Movement : MonoBehaviour
     public int onAirVelocity;
     float leavingTheGround;
     public int side;
+    private bool facingRight;
+    private bool grounded;
+    private bool jumping;
 
-    void FixedUpdate()
+    private void Start()
+    {
+        facingRight = true;
+    }
+
+    private void Update()
     {
         leftJoystickY = Input.GetAxis("LeftJoyY");
         leftJoystickX = Input.GetAxis("LeftJoyX");
+        GetInput();
+    }
 
+    void FixedUpdate()
+    {
+
+        
         PlayerMovementXaxis();
         PlayerJump();
+        PlayerFlip(leftJoystickX);
+        ResetValues();
 
     }
 
@@ -27,22 +43,16 @@ public class Movement : MonoBehaviour
 
     void PlayerMovementXaxis()
     {
-        if (Input.GetButtonDown("LB")==false)
+        if (!grounded)
         {
 
-            if (onFloor)
+            if (onFloor) {
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(velocity * leftJoystickX, 0));
-
-            else if (leftJoystickX < leavingTheGround && leavingTheGround > 0)
-
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(onAirVelocity * leavingTheGround, 0));
-
-            else if (leftJoystickX > leavingTheGround && leavingTheGround < 0)
-
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(onAirVelocity * leavingTheGround, 0));
-
-            else
+                }
+            else {
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(onAirVelocity * leftJoystickX, 0));
+
+            }
         }
 
         if (leftJoystickX > 0)
@@ -58,7 +68,7 @@ public class Movement : MonoBehaviour
     void PlayerJump()
     {
         
-        if (Input.GetButtonDown("XboxA") && onFloor && Input.GetAxis("LeftJoyY") != -1)
+        if (jumping && onFloor && Input.GetAxis("LeftJoyY") != -1)
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
 
@@ -69,18 +79,53 @@ public class Movement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "Player")
         {
             onFloor = true;
         }
 
     }
 
-    void OnCollisionExit2D(Collision2D coll)
+    void OnCollisionExit2D(Collision2D collision)
     {
-        if (coll.gameObject.tag == "Floor")
+        if (collision.gameObject.tag == "Floor")
         {
             onFloor = false;
         }
+    }
+
+    void PlayerFlip(float leftJoyX)
+    {
+        if (leftJoyX > 0 && !facingRight || leftJoyX < 0 && facingRight)
+        {
+            facingRight = !facingRight;
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+
+        }
+         
+    }
+
+    void GetInput()
+    {
+        if (Input.GetButtonDown("LB"))
+        {
+            grounded = true;
+        }
+        else if (Input.GetButtonUp("LB"))
+        {
+            grounded = false;
+        }
+
+        if (Input.GetButtonDown("XboxA"))
+        {
+            jumping = true;
+        }
+    }
+
+    void ResetValues()
+    {
+        jumping = false;
     }
 }
