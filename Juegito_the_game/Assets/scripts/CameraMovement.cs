@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
-    public int numPlayers;
+    private int numPlayers;
     private Transform[] playersT = new Transform[4];
     private GameObject[] players = new GameObject[4];
     private Vector3 mid = new Vector3(0, 0, 0);
@@ -19,10 +19,12 @@ public class CameraMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        numPlayers = players.Length;
         updatePlayers();
         cameraPosition();
         float movement = cameraSpeed * Time.deltaTime;
