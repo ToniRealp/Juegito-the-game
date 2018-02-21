@@ -17,6 +17,7 @@ public class Traspassing : MonoBehaviour {
         {
             Player = collision.gameObject;
         }
+
     }
 
     IEnumerator WaitForCollider()
@@ -28,8 +29,7 @@ public class Traspassing : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate () {
-
-       
+               
         if (Input.GetButtonDown("XboxA") && Input.GetAxis("LeftJoyY") == -1)
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.GetComponent<Collider2D>(), true);

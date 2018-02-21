@@ -15,8 +15,13 @@ public class ballMovement : MonoBehaviour {
     private Vector2 force;
     public int ult;
     private float size;
+    
+    void Update () {
+        
+	}
 
-    void Awake () {
+    void Awake()
+    {
 
         player = GameObject.Find("ThePlayer");
         direction = player.GetComponent<shoot>().DirectionJoyL;
@@ -36,10 +41,6 @@ public class ballMovement : MonoBehaviour {
         force = (direction * (speed + ((10 * ult) + (k * charge))));
         rb.AddForce(force);
     }
-
-    void Update () {
-        
-	}
 
     void calculateSize()
     {
