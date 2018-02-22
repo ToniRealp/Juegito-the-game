@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour {
     {
         canvas.enabled = true;
         winnerText.text = "Winner: " + winner.name;
-        if (Input.GetButtonDown("XboxA"))
+        if (Input.GetButtonDown("P1_XboxA")|| Input.GetButtonDown("P2_XboxA"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
