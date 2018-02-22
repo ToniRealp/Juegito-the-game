@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+        side = 1;
         facingRight = true;
     }
 

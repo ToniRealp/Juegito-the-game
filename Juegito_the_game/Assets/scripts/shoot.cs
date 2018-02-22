@@ -42,7 +42,7 @@ public class shoot : MonoBehaviour
         if (timer > cadency && Input.GetAxis("RT") == 0 && shotCharge != 0)
         {
             if (DirectionJoyL == new Vector2(0, 0))
-                DirectionJoyL = new Vector2(1*GameObject.Find("ThePlayer").GetComponent<Movement>().side, 0); // multiplicat that for 1 or -1 depending on were are you facing!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                DirectionJoyL = new Vector2(GameObject.Find("ThePlayer").GetComponent<Movement>().side, 0); // multiplicat that for 1 or -1 depending on were are you facing!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             SpawnBullet();
             timer = 0;
@@ -71,7 +71,7 @@ public class shoot : MonoBehaviour
     //this function spawns bullets and destroys them after 3 seconds
     void SpawnBullet()
     {
-        GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position + new Vector3(10.7f, 0.5f, 0), transform.rotation);
+        GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
         Destroy(bullet, 3);//Cambiar on collision con los bordes del mapa
 
     }

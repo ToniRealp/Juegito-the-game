@@ -29,7 +29,18 @@ public class CameraMovement : MonoBehaviour {
         updatePlayers();
         cameraPosition();
         float movement = cameraSpeed * Time.deltaTime;
+
         transform.position = Vector3.MoveTowards(transform.position, mid + new Vector3(0, Yoffset, -1), movement);
+
+        if (numPlayers == 2)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, mid + new Vector3(0, 4, -1), movement);
+        }
+
+        if (numPlayers == 1)
+        {
+            transform.position = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position + new Vector3(0,0,-1);
+        }
 
     }
 
