@@ -4,37 +4,57 @@ using UnityEngine;
 
 public class Traspassing : MonoBehaviour {
 
-    public GameObject Player;
+    public GameObject Player1;
+    public GameObject Player2;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.name == "Player1")
         {
-            Player = collision.gameObject;
+            Player1 = collision.gameObject;
+        }
+
+        if (collision.gameObject.name == "Player2")
+        {
+            Player2 = collision.gameObject;
         }
 
     }
 
-    IEnumerator WaitForCollider()
+    IEnumerator WaitForCollider1()
     {
         // suspend execution for 1 seconds
         yield return new WaitForSeconds(0.2f);
-        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.GetComponent<Collider2D>(), false);
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player1.GetComponent<Collider2D>(), false);
+    }
+
+    IEnumerator WaitForCollider2()
+    {
+        // suspend execution for 1 seconds
+        yield return new WaitForSeconds(0.2f);
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player2.GetComponent<Collider2D>(), false);
     }
 
     // Update is called once per frame
-    void FixedUpdate () {
+    void Update () {
                
-        if (Input.GetButtonDown("XboxA") && Input.GetAxis("LeftJoyY") == -1)
+        if (Input.GetButtonDown("P1_XboxA") && Input.GetAxis("P1_LeftJoyY") == -1)
         {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player.GetComponent<Collider2D>(), true);
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player1.GetComponent<Collider2D>(), true);
 
-            StartCoroutine(WaitForCollider());
+            StartCoroutine(WaitForCollider1());
+        }
+
+        if (Input.GetButtonDown("P2_XboxA") && Input.GetAxis("P2_LeftJoyY") == -1)
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player2.GetComponent<Collider2D>(), true);
+
+            StartCoroutine(WaitForCollider2());
         }
     }
 }
