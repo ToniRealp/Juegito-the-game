@@ -33,6 +33,11 @@ public class CameraMovement : MonoBehaviour {
 
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     void updatePlayers()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
