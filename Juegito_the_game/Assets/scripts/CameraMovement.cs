@@ -66,11 +66,11 @@ public class CameraMovement : MonoBehaviour {
         for (int i=0; i < numPlayers; i++)
         {
             mid = mid + playersT[i].position;
-            if (i>0 && (playersT[i].position - playersT[i-1].position).magnitude > separation)
+            if (i > 0 && (playersT[i].position - playersT[i-1].position).magnitude > separation)
                 separation = (playersT[i].position - playersT[i - 1].position).magnitude;
         }
         mid = mid / numPlayers;
-        gameObject.GetComponent<Camera>().orthographicSize = (separation + Ycenter() + sizeOfsset) / 1.8f;
+        gameObject.GetComponent<Camera>().orthographicSize = (separation + Ycenter() + sizeOfsset) / 1.6f;
 
 
         if (gameObject.GetComponent<Camera>().orthographicSize < minSize)
