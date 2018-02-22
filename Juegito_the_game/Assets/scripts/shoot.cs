@@ -18,6 +18,7 @@ public class shoot : MonoBehaviour
     public int ultCharge = 0;
     private float timer = 0;
     private bool joyStick;
+    public string playerNumber;
 
 
 
@@ -29,17 +30,17 @@ public class shoot : MonoBehaviour
     void Update()
     {
         //with this two lines the code sets DirectionJoyL to the vector that comes up from the Left joystik of the Xbox One controller
-        DirectionJoyL.x = Input.GetAxis("LeftJoyX");
-        DirectionJoyL.y = Input.GetAxis("LeftJoyY");
+        DirectionJoyL.x = Input.GetAxis(playerNumber+"LeftJoyX");
+        DirectionJoyL.y = Input.GetAxis(playerNumber+"LeftJoyY");
         DirectionJoyL.Normalize();
 
-        if (Input.GetAxis("RT") != 0)
+        if (Input.GetAxis(playerNumber+"RT") != 0)
         {
             if (shotCharge < maxCharge)
                 shotCharge += Time.deltaTime;
         }
 
-        if (timer > cadency && Input.GetAxis("RT") == 0 && shotCharge != 0)
+        if (timer > cadency && Input.GetAxis(playerNumber+"RT") == 0 && shotCharge != 0)
         {
             if (DirectionJoyL == new Vector2(0, 0))
                 DirectionJoyL = new Vector2(GameObject.Find("ThePlayer").GetComponent<Movement>().side, 0); // multiplicat that for 1 or -1 depending on were are you facing!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -54,7 +55,7 @@ public class shoot : MonoBehaviour
             shotCharge = 0;
         }
 
-        if (Input.GetAxis("LT") != 0 && ultCharge == 100)
+        if (Input.GetAxis(playerNumber+"LT") != 0 && ultCharge == 100)
         {
             if (DirectionJoyL == new Vector2(0, 0))
                 DirectionJoyL = new Vector2(1, 0);

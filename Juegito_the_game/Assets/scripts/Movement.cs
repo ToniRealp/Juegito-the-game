@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     private bool facingRight;
     private bool grounded;
     private bool jumping;
+    public string playerNumber;
 
     private void Start()
     {
@@ -24,8 +25,8 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        leftJoystickY = Input.GetAxis("LeftJoyY");
-        leftJoystickX = Input.GetAxis("LeftJoyX");
+        leftJoystickY = Input.GetAxis(playerNumber+"LeftJoyY");
+        leftJoystickX = Input.GetAxis(playerNumber+"LeftJoyX");
         GetInput();
     }
 
@@ -69,7 +70,7 @@ public class Movement : MonoBehaviour
     void PlayerJump()
     {
         
-        if (jumping && onFloor && Input.GetAxis("LeftJoyY") != -1)
+        if (jumping && onFloor && Input.GetAxis(playerNumber+"LeftJoyY") != -1)
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
 
@@ -110,16 +111,16 @@ public class Movement : MonoBehaviour
 
     void GetInput()
     {
-        if (Input.GetButtonDown("LB"))
+        if (Input.GetButtonDown(playerNumber+"LB"))
         {
             grounded = true;
         }
-        else if (Input.GetButtonUp("LB"))
+        else if (Input.GetButtonUp(playerNumber+"LB"))
         {
             grounded = false;
         }
 
-        if (Input.GetButtonDown("XboxA"))
+        if (Input.GetButtonDown(playerNumber+"XboxA"))
         {
             jumping = true;
         }
