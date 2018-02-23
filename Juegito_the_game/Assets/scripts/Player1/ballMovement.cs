@@ -11,10 +11,12 @@ public class ballMovement : MonoBehaviour {
     public float k;
     private Vector2 direction;
     public float charge;
+    private int chargeInt;
     private float maxCharge;
     private Vector2 force;
     public int ult;
     private float size;
+    public int escalarCarga;//coge 3 valores *1 cuando carga > 0.5, *2 cuando carga > 0.75, *4 cuando carga = 1
     
 
    
@@ -54,8 +56,16 @@ public class ballMovement : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject != player) { 
             if (other.gameObject.tag == "Player"){
-              if(player.GetComponent<shoot>().ultCharge < 100)
-                  player.GetComponent<shoot>().ultCharge += 2;
+                if (player.GetComponent<shoot>().ultCharge < 100)
+                    if (charge > maxCharge-0.1f)
+                        chargeInt = escalarCarga*4;
+                    else if (charge > maxCharge*3/4f)
+                        chargeInt = escalarCarga*2;
+                    else if (charge > maxCharge/2f)
+                        chargeInt = escalarCarga;
+                    else 
+                        chargeInt = 2;
+                player.GetComponent<shoot>().ultCharge += chargeInt;
 
                 otherRb = other.gameObject.GetComponent<Rigidbody2D>();
                 if (gameObject.tag == "Ulti")
