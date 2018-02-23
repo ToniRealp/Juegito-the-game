@@ -27,21 +27,24 @@ public class CameraMovement : MonoBehaviour {
 	void Update () {
         numPlayers = players.Length;
         updatePlayers();
-        cameraPosition();
+        
         float movement = cameraSpeed * Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(transform.position, mid + new Vector3(0, Yoffset, -1), movement);
 
         if (numPlayers == 2)
         {
-            transform.position = Vector3.MoveTowards(transform.position, mid + new Vector3(0, 4, -1), movement);
+            minSize = 7;
+            maxSize = 200;
+            Yoffset = 4;
         }
+        transform.position = Vector3.MoveTowards(transform.position, mid + new Vector3(0, Yoffset, -1), movement);
 
         if (numPlayers == 1)
         {
             transform.position = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position + new Vector3(0,0,-1);
         }
 
+        cameraPosition();
     }
 
     private void FixedUpdate()

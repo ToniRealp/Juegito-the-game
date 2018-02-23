@@ -51,11 +51,33 @@ public class ballMovement2 : MonoBehaviour {
 
     }
 
-    void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject != player) { 
-            if (other.gameObject.tag == "Player"){
-              if(player.GetComponent<shoot2>().ultCharge < 100)
-                  player.GetComponent<shoot2>().ultCharge += 2;
+    void OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject != player)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                if (player.GetComponent<shoot2>().ultCharge < 100)
+                    player.GetComponent<shoot2>().ultCharge += 2;
+
+                otherRb = other.gameObject.GetComponent<Rigidbody2D>();
+                if (gameObject.tag == "Ulti")
+                {
+                    Destroy(other.gameObject);
+                }
+                otherRb.AddForce(force);
+                Destroy(gameObject);
+            }
+            else
+                Destroy(gameObject);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject != player)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                if (player.GetComponent<shoot2>().ultCharge < 100)
 
                 otherRb = other.gameObject.GetComponent<Rigidbody2D>();
                 if (gameObject.tag == "Ulti")
