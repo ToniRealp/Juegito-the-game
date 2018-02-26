@@ -261,17 +261,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\scripts\arrow.cs" />
     <Compile Include="Assets\scripts\CameraMovement.cs" />
     <Compile Include="Assets\scripts\GameController.cs" />
-    <Compile Include="Assets\scripts\Player1\ballMovement.cs" />
+    <Compile Include="Assets\scripts\Player1\BallMovement.cs" />
     <Compile Include="Assets\scripts\Player1\Movement.cs" />
     <Compile Include="Assets\scripts\Player1\Respawn_Death_Count.cs" />
-    <Compile Include="Assets\scripts\Player1\shoot.cs" />
-    <Compile Include="Assets\scripts\Player2\ballMovement2.cs" />
+    <Compile Include="Assets\scripts\Player1\Shoot.cs" />
+    <Compile Include="Assets\scripts\Player2\BallMovement2.cs" />
     <Compile Include="Assets\scripts\Player2\Movement2.cs" />
     <Compile Include="Assets\scripts\Player2\Respawn_Death_Count2.cs" />
-    <Compile Include="Assets\scripts\Player2\shoot2.cs" />
+    <Compile Include="Assets\scripts\Player2\Shoot2.cs" />
     <Compile Include="Assets\scripts\Traspassing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

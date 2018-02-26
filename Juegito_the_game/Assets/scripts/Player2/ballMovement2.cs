@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ballMovement2 : MonoBehaviour {
+public class BallMovement2 : MonoBehaviour {
 
     public GameObject player;
     public Rigidbody2D rb;
@@ -19,31 +19,28 @@ public class ballMovement2 : MonoBehaviour {
     public int escalarCarga;//coge 3 valores *1 cuando carga > 0.5, *2 cuando carga > 0.75, *4 cuando carga = 1
 
 
+    void Awake(){
 
-
-    void Awake()
-    {
         player = GameObject.Find("Player2");
-        direction = player.GetComponent<shoot2>().DirectionJoyL;
-        charge = player.GetComponent<shoot2>().shotCharge;
-        maxCharge = player.GetComponent<shoot2>().maxCharge;
+        direction = player.GetComponent<Shoot2>().DirectionJoyL;
+        charge = player.GetComponent<Shoot2>().shotCharge;
+        maxCharge = player.GetComponent<Shoot2>().maxCharge;
         rb = GetComponent<Rigidbody2D>();
-        ult = player.GetComponent<shoot2>().ultCharge;
+        ult = player.GetComponent<Shoot2>().ultCharge;
 
         if (gameObject.tag != "Ulti")
-        {
-            calculateSize();
-        }
+            CalculateSize();
 
         if (charge < 0.3)
             charge = 0.3f;
 
         force = (direction * (speed + ((10 * ult) + (k * charge))));
         rb.AddForce(force);
+
     }
 
-    void calculateSize()
-    {
+    void CalculateSize(){
+
         size = ((((50 * charge) + (ult / 2)) / (maxCharge * 100)) * 0.5f);
 
         if (size < 0.05f)
@@ -54,46 +51,59 @@ public class ballMovement2 : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D other){
+
         if (other.gameObject != player){
+
             if (other.gameObject.tag == "Player"){
-                if (player.GetComponent<shoot2>().ultCharge < 100)
+
+                if (player.GetComponent<Shoot2>().ultCharge < 100){
+                    
                     if (charge > maxCharge - 0.1f)
-                        chargeInt = escalarCarga*4;
+                        chargeInt = escalarCarga * 4;
+
                     else if (charge > maxCharge * 3 / 4f)
-                        chargeInt = escalarCarga*2;
+                        chargeInt = escalarCarga * 2;
+
                     else if (charge > maxCharge / 2f)
                         chargeInt = escalarCarga;
+
                     else 
                         chargeInt = 2;
-                player.GetComponent<shoot2>().ultCharge += chargeInt;
 
-                otherRb = other.gameObject.GetComponent<Rigidbody2D>();
-                if (gameObject.tag == "Ulti")
-                {
-                    Destroy(other.gameObject);
                 }
+
+                player.GetComponent<Shoot2>().ultCharge += chargeInt;
+                otherRb = other.gameObject.GetComponent<Rigidbody2D>();
+
+                if (gameObject.tag == "Ulti")
+                    Destroy(other.gameObject);
+                
                 otherRb.AddForce(force);
                 Destroy(gameObject);
+
             }
+
             else
                 Destroy(gameObject);
+
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject != player)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                if (player.GetComponent<shoot2>().ultCharge < 100)
 
+    private void OnTriggerEnter2D(Collider2D other){
+
+        if (other.gameObject != player){
+
+            if (other.gameObject.tag == "Player"){
+
+                if (player.GetComponent<Shoot2>().ultCharge < 100)
                 otherRb = other.gameObject.GetComponent<Rigidbody2D>();
+
                 if (gameObject.tag == "Ulti")
-                {
                     Destroy(other.gameObject);
-                }
+                
                 otherRb.AddForce(force);
                 Destroy(gameObject);
+
             }
         }
     }
