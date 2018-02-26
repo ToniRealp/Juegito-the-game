@@ -29,7 +29,7 @@ public class BallMovement : MonoBehaviour{
         ult = player.GetComponent<Shoot>().ultCharge;
 
         if (gameObject.tag != "Ulti")
-            calculateSize();
+            CalculateSize();
 
         if (charge < 0.3)
             charge = 0.3f;
@@ -39,7 +39,7 @@ public class BallMovement : MonoBehaviour{
 
     }
 
-    void calculateSize(){
+    void CalculateSize(){
 
         size = ((((50 * charge) + (ult / 2)) / (maxCharge * 100)) * 0.5f);
 
@@ -88,7 +88,7 @@ public class BallMovement : MonoBehaviour{
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other){
+    void OnTriggerEnter2D(Collider2D other){
 
         if (other.gameObject != player){
 

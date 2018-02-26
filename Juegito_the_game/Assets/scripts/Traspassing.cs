@@ -20,7 +20,7 @@ public class Traspassing : MonoBehaviour{
 
     IEnumerator WaitForCollider1(){
 
-        // suspend execution for 1 seconds
+        // suspend execution for 0.2 seconds
         yield return new WaitForSeconds(0.2f);
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player1.GetComponent<Collider2D>(), false);
 
@@ -28,13 +28,12 @@ public class Traspassing : MonoBehaviour{
 
     IEnumerator WaitForCollider2(){
 
-        // suspend execution for 1 seconds
+        // suspend execution for 0.2 seconds
         yield return new WaitForSeconds(0.2f);
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), Player2.GetComponent<Collider2D>(), false);
 
     }
 
-    // Update is called once per frame
     void Update (){
                
         if (Input.GetButtonDown("P1_XboxA") && Input.GetAxis("P1_LeftJoyY") == -1){

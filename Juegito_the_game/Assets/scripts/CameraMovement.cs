@@ -23,7 +23,7 @@ public class CameraMovement : MonoBehaviour {
 	void Update (){
 
         numPlayers = players.Length;
-        updatePlayers();
+        UpdatePlayers();
         float movement = cameraSpeed * Time.deltaTime;
 
         if (numPlayers == 2){
@@ -39,10 +39,11 @@ public class CameraMovement : MonoBehaviour {
         if (numPlayers == 1)
             transform.position = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position + new Vector3(0,0,-1);
         
-        cameraPosition();
+        CameraPosition();
+
     }
 
-    void updatePlayers(){
+    void UpdatePlayers(){
 
         players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -69,7 +70,7 @@ public class CameraMovement : MonoBehaviour {
 
     }
 
-    void cameraPosition(){
+    void CameraPosition(){
 
         separation = 0;
 
@@ -90,6 +91,7 @@ public class CameraMovement : MonoBehaviour {
      
         if (gameObject.GetComponent<Camera>().orthographicSize > maxSize)
             gameObject.GetComponent<Camera>().orthographicSize = maxSize;
+
     }
 }
 

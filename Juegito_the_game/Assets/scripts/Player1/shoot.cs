@@ -19,6 +19,7 @@ public class Shoot : MonoBehaviour
 
 
     void Update(){
+
         //with this two lines the code sets DirectionJoyL to the vector that comes up from the Left joystik of the Xbox One controller
         DirectionJoyL.x = Input.GetAxis(playerNumber+"LeftJoyX");
         DirectionJoyL.y = Input.GetAxis(playerNumber+"LeftJoyY");
@@ -34,7 +35,7 @@ public class Shoot : MonoBehaviour
         if (timer > cadency && Input.GetAxis(playerNumber+"RT") == 0 && shotCharge != 0){
 
             if (DirectionJoyL == new Vector2(0, 0))
-                DirectionJoyL = new Vector2(GameObject.Find("Player1").GetComponent<Movement>().side, 0); // multiplicat that for 1 or -1 depending on were are you facing!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                DirectionJoyL = new Vector2(GameObject.Find("Player1").GetComponent<Movement>().side, 0); // multiplicate that for 1 or -1 depending on were are you facing
 
             SpawnBullet();
             timer = 0;
