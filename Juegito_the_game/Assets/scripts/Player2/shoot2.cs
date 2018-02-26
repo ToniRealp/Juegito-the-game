@@ -70,7 +70,7 @@ public class shoot2 : MonoBehaviour
     //this function spawns bullets and destroys them after 3 seconds
     void SpawnBullet()
     {
-        GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
+        GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position + new Vector3(0.2f * GameObject.Find("Player2").GetComponent<Movement2>().side, 0,0), transform.rotation);
         Destroy(bullet, 3);//Cambiar on collision con los bordes del mapa
 
     }
