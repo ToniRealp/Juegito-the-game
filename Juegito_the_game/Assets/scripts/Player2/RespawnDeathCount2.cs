@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Respawn_Death_Count2 : MonoBehaviour{
+public class RespawnDeathCount2 : MonoBehaviour{
 
     public int deaths = 0;
     public bool die = false;
@@ -27,8 +27,8 @@ public class Respawn_Death_Count2 : MonoBehaviour{
         }
     }
 
-	// Update is called once per frame
 	void Update (){
+
         if (die){
 
             GetComponent<Rigidbody2D>().transform.position = new Vector2(0,3.2f);

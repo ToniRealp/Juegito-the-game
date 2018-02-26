@@ -27,8 +27,8 @@ public class RespawnDeathCount : MonoBehaviour{
         }  
     }
 	
-	// Update is called once per frame
 	void Update (){
+
         if (die){
 
             GetComponent<Rigidbody2D>().transform.position = new Vector2(0,3.2f);
