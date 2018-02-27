@@ -14,6 +14,7 @@ public class Shoot : MonoBehaviour
     public float maxCharge;
     public float shotCharge = 0;
     public int ultCharge = 0;
+    public string player;
     private float timer = 0;
     public string playerNumber;
 
@@ -35,7 +36,7 @@ public class Shoot : MonoBehaviour
         if (timer > cadency && Input.GetAxis(playerNumber+"RT") == 0 && shotCharge != 0){
 
             if (DirectionJoyL == new Vector2(0, 0))
-                DirectionJoyL = new Vector2(GameObject.Find("Player1").GetComponent<Movement>().side, 0); // multiplicate that for 1 or -1 depending on were are you facing
+                DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0); // multiplicate that for 1 or -1 depending on were are you facing
 
             SpawnBullet();
             timer = 0;
@@ -50,7 +51,7 @@ public class Shoot : MonoBehaviour
         if (Input.GetAxis(playerNumber+"LT") != 0 && ultCharge == 100){
 
             if (DirectionJoyL == new Vector2(0, 0))
-                DirectionJoyL = new Vector2(GameObject.Find("Player1").GetComponent<Movement>().side, 0);
+                DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0);
 
             SpawnUlt();
             ultCharge = 0;
@@ -67,9 +68,9 @@ public class Shoot : MonoBehaviour
     //this function spawns bullets and destroys them after 3 seconds
     void SpawnBullet(){
 
-        GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
+        GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position + new Vector3(0.4f * GameObject.Find(player).GetComponent<Movement>().side, 0,0), transform.rotation);
         Destroy(bullet, 3);//Cambiar on collision con los bordes del mapa
-
+        
     }
 
     void SpawnUlt(){

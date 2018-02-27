@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RespawnDeathCount2 : MonoBehaviour{
+public class RespawnDeathCount : MonoBehaviour{
 
     public int deaths = 0;
     public bool die = false;
@@ -24,9 +24,9 @@ public class RespawnDeathCount2 : MonoBehaviour{
             lastHitMe = collision.gameObject.GetComponent<BallMovement>().player;
             lastHit = true;
 
-        }
+        }  
     }
-
+	
 	void Update (){
 
         if (die){
@@ -40,5 +40,5 @@ public class RespawnDeathCount2 : MonoBehaviour{
             lastHit = false;
 
         } 
-    }
+	}
 }

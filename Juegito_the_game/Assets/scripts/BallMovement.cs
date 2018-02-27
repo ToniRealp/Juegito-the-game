@@ -9,6 +9,7 @@ public class BallMovement : MonoBehaviour{
     public Rigidbody2D otherRb;
     public float speed;
     public float k;
+    public string myPlayer;
     private Vector2 direction;
     public float charge;
     private int chargeInt;
@@ -21,7 +22,7 @@ public class BallMovement : MonoBehaviour{
 
     void Awake(){
 
-        player = GameObject.Find("Player1");
+        player = GameObject.Find(myPlayer);
         direction = player.GetComponent<Shoot>().DirectionJoyL;
         charge = player.GetComponent<Shoot>().shotCharge;
         maxCharge = player.GetComponent<Shoot>().maxCharge;
