@@ -42,7 +42,7 @@ public class BallMovement : MonoBehaviour{
 
     void CalculateSize(){
 
-        size = ((((50 * charge) + (ult / 2)) / (maxCharge * 100)) * 0.5f);
+        size = (ult / 2 + charge * 100 / 2) / 500;
 
         if (size < 0.05f)
             size = 0.05f;
