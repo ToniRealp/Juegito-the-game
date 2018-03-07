@@ -7,7 +7,7 @@ public class CameraMovement : MonoBehaviour {
     private int numPlayers;
     private Transform[] playersT = new Transform[4];
     private GameObject[] players = new GameObject[4];
-    private Vector3 mid = new Vector3(0, 0, 0);
+    public Vector3 mid = new Vector3(0, 0, 0);
     private float separation = 0;
     public float maxY;
     public float minY;
@@ -17,10 +17,14 @@ public class CameraMovement : MonoBehaviour {
     public float sizeOfsset;
     public float maxSize;
     public float minSize;
+    public float maxPosX;
+    public float minPosX;
+    public float maxPosY;
+    public float minPosY;
 
-	
-	// Update is called once per frame
-	void Update (){
+
+    // Update is called once per frame
+    void Update (){
 
         numPlayers = players.Length;
         UpdatePlayers();
@@ -28,18 +32,29 @@ public class CameraMovement : MonoBehaviour {
 
         if (numPlayers == 2){
 
-            minSize = 7;
-            maxSize = 200;
-            Yoffset = 4;
+            Yoffset = 3;
 
         }
+
+        CameraPosition();
+
+        if (mid.x < minPosX)
+            mid.x = minPosX;
+
+        if (mid.x > maxPosX)
+            mid.x = maxPosX;
+
+        if (mid.y < minPosY)
+            mid.y = minPosY;
+
+        if (mid.y > maxPosY)
+            mid.y = maxPosY;
 
         transform.position = Vector3.MoveTowards(transform.position, mid + new Vector3(0, Yoffset, -1), movement);
 
         if (numPlayers == 1)
             transform.position = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position + new Vector3(0,0,-1);
         
-        CameraPosition();
 
     }
 
