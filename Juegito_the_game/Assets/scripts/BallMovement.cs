@@ -7,16 +7,19 @@ public class BallMovement : MonoBehaviour{
     public GameObject player;
     public Rigidbody2D rb;
     public Rigidbody2D otherRb;
+    private Vector2 direction;
+    private Vector2 force;
     public float speed;
     public float k;
-    public string myPlayer;
-    private Vector2 direction;
     public float charge;
-    private int chargeInt;
     private float maxCharge;
-    private Vector2 force;
-    public int ult;
     private float size;
+    private int chargeInt;
+    public int ult;
+    public string myPlayer;
+      
+  
+  
     public int escalarCarga;//coge 3 valores *1 cuando carga > 0.5, *2 cuando carga > 0.75, *4 cuando carga = 1
 
 

@@ -7,16 +7,16 @@ public class Shoot : MonoBehaviour
 
     public GameObject bulletPrefab;
     public GameObject ultiPrefab;
+    public Vector2 DirectionJoyL = Vector2.zero;
     public float cadency;
     public float bulletForce;
     public float lateralReduction;
-    public Vector2 DirectionJoyL = Vector2.zero;
     public float maxCharge;
     public float shotCharge = 0;
-    public int ultCharge = 0;
-    public string player;
     private float timer = 0;
+    public int ultCharge = 0;
     public string playerNumber;
+    public string player;
 
 
     void Update(){
