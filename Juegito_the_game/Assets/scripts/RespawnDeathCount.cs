@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RespawnDeathCount : MonoBehaviour{
 
+    public GameObject lastHitMe;
     public int deaths = 0;
     public bool die = false;
     public bool lastHit = false;
-    public GameObject lastHitMe;
-
+  
 
     void OnCollisionEnter2D(Collision2D collision){
 

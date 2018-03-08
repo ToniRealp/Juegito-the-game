@@ -6,15 +6,15 @@ public class Movement : MonoBehaviour{
 
     public float leftJoystickY;
     public float leftJoystickX;
+    float leavingTheGround;
     public int velocity;
-    public bool onFloor;
     public int jumpForce;
     public int onAirVelocity;
-    float leavingTheGround;
     public int side;
     private bool facingRight;
     private bool grounded;
     private bool jumping;
+    public bool onFloor;
     public string playerNumber;
 
 
