@@ -13,10 +13,11 @@ public class Shoot : MonoBehaviour
     public float lateralReduction;
     public float maxCharge;
     public float shotCharge = 0;
-    private float timer = 0;
     public int ultCharge = 0;
     public string playerNumber;
     public string player;
+
+    private float timer = 0;
 
 
     void Update(){
@@ -76,6 +77,21 @@ public class Shoot : MonoBehaviour
     void SpawnUlt(){
 
         GameObject ulti = (GameObject)Instantiate(ultiPrefab, GetComponent<Rigidbody2D>().transform.position, transform.rotation);
+
+    }
+
+    //Parry
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (Input.GetButtonDown(playerNumber+"XboxX"))
+        {
+            if (other.tag == "Bullet")
+            {
+                Destroy(other);
+                SpawnBullet();
+            }
+        }
 
     }
 } 
