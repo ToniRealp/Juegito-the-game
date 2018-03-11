@@ -32,6 +32,9 @@ public class BallMovement : MonoBehaviour{
         rb = GetComponent<Rigidbody2D>();
         ult = player.GetComponent<Shoot>().ultCharge;
 
+        if (charge > 0.5)
+            gameObject.layer = 10;
+
         if (gameObject.tag != "Ulti")
             CalculateSize();
 
