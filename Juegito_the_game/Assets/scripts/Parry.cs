@@ -8,6 +8,7 @@ public class Parry : MonoBehaviour {
     public GameObject bulletPrefab;
     public string playerNumber;
     public string player;
+    public Vector2 vec2;
 
     void SpawnBullet()
     {
@@ -17,7 +18,7 @@ public class Parry : MonoBehaviour {
 
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (Input.GetButtonDown(playerNumber + "XboxX"))
         {
