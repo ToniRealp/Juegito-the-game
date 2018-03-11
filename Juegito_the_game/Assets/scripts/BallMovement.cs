@@ -32,6 +32,9 @@ public class BallMovement : MonoBehaviour{
         rb = GetComponent<Rigidbody2D>();
         ult = player.GetComponent<Shoot>().ultCharge;
 
+        if (charge > 0.5)
+            gameObject.layer = 10;
+
         if (gameObject.tag != "Ulti")
             CalculateSize();
 
@@ -60,7 +63,7 @@ public class BallMovement : MonoBehaviour{
 
             if (other.gameObject.tag == "Player"){
 
-                if (player.GetComponent<Shoot>().ultCharge < 100) { 
+                if (player.GetComponent<Shoot>().ultCharge < 100) {
 
                     if (charge > maxCharge - 0.1f)
                         chargeInt = escalarCarga * 4;
