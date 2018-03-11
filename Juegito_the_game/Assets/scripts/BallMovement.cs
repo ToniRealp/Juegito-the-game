@@ -63,7 +63,7 @@ public class BallMovement : MonoBehaviour{
 
             if (other.gameObject.tag == "Player"){
 
-                if (player.GetComponent<Shoot>().ultCharge < 100) { 
+                if (player.GetComponent<Shoot>().ultCharge < 100) {
 
                     if (charge > maxCharge - 0.1f)
                         chargeInt = escalarCarga * 4;
