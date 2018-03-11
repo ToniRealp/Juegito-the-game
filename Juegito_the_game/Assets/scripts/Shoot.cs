@@ -80,18 +80,4 @@ public class Shoot : MonoBehaviour
 
     }
 
-    //Parry
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (Input.GetButtonDown(playerNumber+"XboxX"))
-        {
-            if (other.tag == "Bullet")
-            {
-                Destroy(other);
-                SpawnBullet();
-            }
-        }
-
-    }
 } 
