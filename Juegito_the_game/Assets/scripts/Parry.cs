@@ -24,7 +24,7 @@ public class Parry : MonoBehaviour {
         {
             if (other.tag == "Bullet")
             {
-                Destroy(other);
+                Destroy(other.gameObject);
                 SpawnBullet();
             }
         }
