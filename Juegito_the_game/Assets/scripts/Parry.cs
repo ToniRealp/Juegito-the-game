@@ -11,8 +11,10 @@ public class Parry : MonoBehaviour {
     public Vector2 vec2;
     public Vector2 DirectionJoyL = Vector2.zero;
 
+    private bool inTrigger;
     private int parryPoints = 20;
     private GameObject playerObject;
+    private Collider2D other;
 
     private void Awake()
     {
@@ -24,6 +26,26 @@ public class Parry : MonoBehaviour {
         DirectionJoyL.x = Input.GetAxis(playerNumber + "LeftJoyX");
         DirectionJoyL.y = Input.GetAxis(playerNumber + "LeftJoyY");
         DirectionJoyL.Normalize();
+
+        if (inTrigger == true)
+        {
+            if (Input.GetButtonDown(playerNumber + "XboxX"))
+            {
+                if (other.tag == "Bullet")
+                {
+                    Debug.Log("ActualParry!");
+
+                    Destroy(other.gameObject);
+                    inTrigger = false;
+
+                    if (DirectionJoyL == new Vector2(0, 0))
+                        DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0);
+
+                    SpawnBullet();
+                }
+            }
+        }
+
     }
 
     void SpawnBullet()
@@ -34,21 +56,19 @@ public class Parry : MonoBehaviour {
 
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other2)
     { 
-        if (Input.GetButtonDown(playerNumber + "XboxX"))
-        {
-            if (other.tag == "Bullet")
-            {
-                Destroy(other.gameObject);
+        
+        Debug.Log("ParryTime");
+        inTrigger = true;
+        other = other2;
 
-                if (DirectionJoyL == new Vector2(0, 0))
-                    DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0);
 
-                SpawnBullet();
-            }
-        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        inTrigger = false;
     }
 
 }
