@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour{
 
     private GameObject[] players = new GameObject[4];
     private GameObject winner;
-    public Canvas canvas;
+    public GameObject gameOverParent;
     public Text winnerText;
     bool gameOver;
 
@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour{
     void Start (){
 
         gameOver = false;
-        canvas.enabled = false;
+        gameOverParent.SetActive(false);
 
     }
 	
@@ -50,7 +50,7 @@ public class GameController : MonoBehaviour{
 
     void GameOver(){
 
-        canvas.enabled = true;
+        gameOverParent.SetActive(true);
         winnerText.text = "Winner: " + winner.name;
 
         if (Input.GetButtonDown("P1_XboxA")|| Input.GetButtonDown("P2_XboxA"))
