@@ -56,7 +56,7 @@ public class Parry : MonoBehaviour {
 
     }
 
-    void OnTriggerStay2D(Collider2D other2)
+    void OnTriggerEnter2D(Collider2D other2)
     { 
         
         inTrigger = true;

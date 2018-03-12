@@ -20,8 +20,8 @@ public class Player1Animator : MonoBehaviour {
         xAxis = Mathf.Abs(Input.GetAxis(playerNumber + "LeftJoyX"));
     }
 
-    private void Movement()
-    {
+    private void Movement() {
+
         if (Input.GetAxis(playerNumber + "LeftJoyX") > 0.4f && Input.GetButton(playerNumber + "LB") == false || Input.GetAxis(playerNumber + "LeftJoyX") < -0.4f && Input.GetButton(playerNumber+"LB")==false)
         {
             animator.SetBool("isMoving", true);
@@ -33,8 +33,8 @@ public class Player1Animator : MonoBehaviour {
 
     bool flag = true;
 
-    private void Jump()
-    {
+    private void Jump() {
+
         if (!GetComponent<Movement>().onFloor && flag)
         {
             animator.SetBool("onAir", true);
