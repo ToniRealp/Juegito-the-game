@@ -17,6 +17,7 @@ public class Player1Animator : MonoBehaviour {
     void Update () {
         Movement();
         Jump();
+        Crouch();
         xAxis = Mathf.Abs(Input.GetAxis(playerNumber + "LeftJoyX"));
     }
 
@@ -45,6 +46,14 @@ public class Player1Animator : MonoBehaviour {
             animator.SetBool("onAir", false);
             flag = true;
         }
+
+    }
+
+    private void Crouch()
+    {
+        if (Input.GetAxis(playerNumber + "LeftJoyY") == -1)
+            animator.SetBool("crouched", true);
+        else animator.SetBool("crouched", false);
 
     }
 
