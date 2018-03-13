@@ -22,7 +22,7 @@ public class Shoot : MonoBehaviour
 
     void Update(){
 
-        //with this two lines the code sets DirectionJoyL to the vector that comes up from the Left joystik of the Xbox One controller
+        //with these two lines the code sets DirectionJoyL to the vector that comes up from the Left joystik of the Xbox One controller
         DirectionJoyL.x = Input.GetAxis(playerNumber+"LeftJoyX");
         DirectionJoyL.y = Input.GetAxis(playerNumber+"LeftJoyY");
         DirectionJoyL.Normalize();

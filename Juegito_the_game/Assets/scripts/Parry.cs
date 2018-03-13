@@ -59,7 +59,6 @@ public class Parry : MonoBehaviour {
     void OnTriggerStay2D(Collider2D other2)
     { 
         
-        Debug.Log("ParryTime");
         inTrigger = true;
         other = other2;
 
