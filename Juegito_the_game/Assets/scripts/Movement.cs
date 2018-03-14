@@ -15,12 +15,14 @@ public class Movement : MonoBehaviour{
     private bool grounded;
     private bool jumping;
     public bool onFloor;
+    public float venom;
     public string playerNumber;
 
 
     void Start(){
 
         side = 1;
+        venom = 1f;
         facingRight = true;
 
     }
@@ -30,6 +32,9 @@ public class Movement : MonoBehaviour{
         leftJoystickY = Input.GetAxis(playerNumber+"LeftJoyY");
         leftJoystickX = Input.GetAxis(playerNumber+"LeftJoyX");
         GetInput();
+
+        if (venom == -1)
+            StartCoroutine(WaitAndNormal(5));
 
     }
 
@@ -47,10 +52,10 @@ public class Movement : MonoBehaviour{
         if (!grounded){
 
             if (onFloor)
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(velocity * leftJoystickX, 0));
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(((velocity * leftJoystickX) * venom), 0));
                 
             else 
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(onAirVelocity * leftJoystickX, 0));
+                GetComponent<Rigidbody2D>().AddForce(new Vector2((onAirVelocity * leftJoystickX * venom), 0));
 
         }
 
@@ -115,5 +120,11 @@ public class Movement : MonoBehaviour{
 
         jumping = false;
 
+    }
+
+    IEnumerator WaitAndNormal(float toWait)
+    {
+        yield return new WaitForSeconds(toWait);
+        venom = 1;
     }
 }

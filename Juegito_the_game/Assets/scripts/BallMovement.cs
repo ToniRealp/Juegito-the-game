@@ -86,6 +86,10 @@ public class BallMovement : MonoBehaviour{
                     Destroy(other.gameObject);
                 
                 otherRb.AddForce(force);
+
+                if (player.GetComponent<Shoot>().venom) 
+                    other.gameObject.GetComponent<Movement>().venom = -1;
+
                 Destroy(gameObject);
             }
 

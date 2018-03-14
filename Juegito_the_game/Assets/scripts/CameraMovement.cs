@@ -6,12 +6,12 @@ public class CameraMovement : MonoBehaviour {
 
     private int numPlayers;
     private Transform[] playersT = new Transform[4];
-    private GameObject[] players = new GameObject[4];
     public Vector3 mid = new Vector3(0, 0, 0);
     private float separation = 0;
     public float maxY;
     public float minY;
 
+    public GameObject[] players = new GameObject[4];
     public float cameraSpeed;
     public float Yoffset;
     public float sizeOfsset;
