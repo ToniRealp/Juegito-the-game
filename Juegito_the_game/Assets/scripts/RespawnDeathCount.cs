@@ -8,22 +8,28 @@ public class RespawnDeathCount : MonoBehaviour{
     public int deaths = 0;
     public bool die = false;
     public bool lastHit = false;
-  
+    public string myPlayer;
+
+
 
     void OnCollisionEnter2D(Collision2D collision){
 
         if (collision.gameObject.tag == "Limits"){
 
             deaths = deaths + 1;
+            gameObject.GetComponent<Shoot>().ultCharge -= 20;
+            if(gameObject.GetComponent<Shoot>().ultCharge < 0)
+                gameObject.GetComponent<Shoot>().ultCharge = 0;
             die = true;
 
         }
 
         if (collision.gameObject.tag == "Bullet"){
 
-            lastHitMe = collision.gameObject.GetComponent<BallMovement>().player;
-            lastHit = true;
-
+            if(collision.gameObject.GetComponent<BallMovement>().player.name != myPlayer){ 
+                lastHitMe = collision.gameObject.GetComponent<BallMovement>().player;
+                lastHit = true;
+            }
         }  
     }
 	

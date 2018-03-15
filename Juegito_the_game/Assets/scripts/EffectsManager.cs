@@ -40,7 +40,7 @@ public class EffectsManager : MonoBehaviour {
                 break;
 
             case Effect.UltCharge:
-                GetComponent<Shoot>().ultCharge = 100;
+                GetComponent<Shoot>().ultCharge += 50;
                 current = Effect.None;
                 break;
 
@@ -52,7 +52,7 @@ public class EffectsManager : MonoBehaviour {
                     dist =(camera.players[i].GetComponent<Transform>().position - GetComponent<Transform>().position);
                     camera.players[i].GetComponent<RespawnDeathCount>().lastHitMe = me;
                     camera.players[i].GetComponent<RespawnDeathCount>().lastHit = true;
-                    camera.players[i].GetComponent<Rigidbody2D>().AddForce(dist.normalized * 3000);
+                    camera.players[i].GetComponent<Rigidbody2D>().AddForce(dist.normalized * 6000);
                 }
 
                 current = Effect.None;
