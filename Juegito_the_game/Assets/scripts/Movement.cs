@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour{
     public int jumpForce;
     public int onAirVelocity;
     public int side;
-    private bool facingRight;
+    public bool facingRight;
     private bool grounded;
     private bool jumping;
     public bool onFloor;
