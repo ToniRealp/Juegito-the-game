@@ -6,24 +6,27 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour{
 
-    private GameObject[] players = new GameObject[4];
+    public GameObject[] players = new GameObject[4];
     private GameObject winner;
     public GameObject gameOverParent;
     public Text winnerText;
     bool gameOver;
+    private bool paused = true;
 
 
     // Use this for initialization
     void Start (){
-
+        CheckForPlayers();
         gameOver = false;
         gameOverParent.SetActive(false);
+        
+        StartCoroutine(CountDown(4));
 
     }
 	
 	// Update is called once per frame
 	void Update (){
-
+        PauseGame();
         gameOver = CheckForPlayers();
 
         if (gameOver)
@@ -55,6 +58,33 @@ public class GameController : MonoBehaviour{
 
         if (Input.GetButtonDown("P1_XboxA")|| Input.GetButtonDown("P2_XboxA"))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
+   void PauseGame()
+    {
+        if (paused) { 
+            foreach (GameObject p in players)
+            {
+                p.GetComponent<Shoot>().enabled = false;
+                p.GetComponent<Player1Animator>().enabled = false;
+                p.GetComponent<Movement>().enabled = false;
+            }
+            gameObject.GetComponent<PickUpSpawner>().enabled = false;
+        }
+    }
+
+    IEnumerator CountDown(float toWait)
+    {
+        yield return new WaitForSeconds(toWait);
+        paused = false;
+        foreach (GameObject p in players)
+        {
+            p.GetComponent<Shoot>().enabled = true;
+            p.GetComponent<Player1Animator>().enabled = true;
+            p.GetComponent<Movement>().enabled = true;
+        }
+        GetComponent<PickUpSpawner>().enabled = true;
 
     }
 }

@@ -269,6 +269,7 @@
   <ItemGroup>
     <Compile Include="Assets\scripts\BallMovement.cs" />
     <Compile Include="Assets\scripts\CameraMovement.cs" />
+    <Compile Include="Assets\scripts\CountDown.cs" />
     <Compile Include="Assets\scripts\DisplayUlt.cs" />
     <Compile Include="Assets\scripts\EffectsManager.cs" />
     <Compile Include="Assets\scripts\GameController.cs" />
