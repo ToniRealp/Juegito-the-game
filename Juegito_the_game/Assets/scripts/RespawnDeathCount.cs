@@ -29,6 +29,7 @@ public class RespawnDeathCount : MonoBehaviour{
             if(collision.gameObject.GetComponent<BallMovement>().player.name != myPlayer){ 
                 lastHitMe = collision.gameObject.GetComponent<BallMovement>().player;
                 lastHit = true;
+                StartCoroutine(Reset(3));
             }
         }  
     }
@@ -47,4 +48,12 @@ public class RespawnDeathCount : MonoBehaviour{
 
         } 
 	}
+
+    IEnumerator Reset(float toWait)
+    {
+        yield return new WaitForSeconds(toWait);
+        lastHitMe = null;
+        lastHit = false;
+
+    }
 }

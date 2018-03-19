@@ -11,7 +11,7 @@ public class Shield : MonoBehaviour {
     private float timer = 5f;
     private float timer2;
     private float coolDown = 5f;
-    private float duration = 1f;
+    private float duration = 3f;
     private bool isCheck;
     Movement movementScript;
     Shoot shootScript;
@@ -66,7 +66,7 @@ public class Shield : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            shootScript.ultCharge += 3;
+            shootScript.ultCharge += 10;
         }
     }
 
