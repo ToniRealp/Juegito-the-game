@@ -267,12 +267,8 @@
     <Compile Include="Assets\scripts\EffectsManager.cs" />
     <Compile Include="Assets\scripts\GameController.cs" />
     <Compile Include="Assets\scripts\Movement.cs" />
-<<<<<<< HEAD
-    <Compile Include="Assets\scripts\Parry.cs" />
     <Compile Include="Assets\scripts\PickUp1.cs" />
     <Compile Include="Assets\scripts\PickUpSpawner.cs" />
-=======
->>>>>>> master
     <Compile Include="Assets\scripts\Player1Animator.cs" />
     <Compile Include="Assets\scripts\RespawnDeathCount.cs" />
     <Compile Include="Assets\scripts\Shield.cs" />
