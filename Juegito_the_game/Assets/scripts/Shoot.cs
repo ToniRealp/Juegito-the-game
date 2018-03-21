@@ -78,7 +78,7 @@ public class Shoot : MonoBehaviour
     void SpawnBullet(){
         float angle = gameObject.GetComponentInChildren<WeaponDirection>().direction;
 
-        GameObject bullet = (GameObject)Instantiate(bulletPrefab, SpawnPoint.position , new Quaternion(0, 0, angle, 0) );
+        GameObject bullet = (GameObject)Instantiate(bulletPrefab, SpawnPoint.position , Quaternion.Euler(0,0,angle) );
         Destroy(bullet, 3);//Cambiar on collision con los bordes del mapa
         
     }
