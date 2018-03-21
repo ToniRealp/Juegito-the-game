@@ -7,6 +7,7 @@ public class Shoot : MonoBehaviour
 
     public GameObject bulletPrefab;
     public GameObject ultiPrefab;
+    public Transform SpawnPoint;
     public Vector2 DirectionJoyL = Vector2.zero;
     public float cadency;
     public float bulletForce;
@@ -20,9 +21,13 @@ public class Shoot : MonoBehaviour
 
     private float timer = 0;
 
+    private void Start()
+    {
+        SpawnPoint = transform.GetChild(0).GetChild(0).GetChild(0).transform;
+    }
 
     void Update(){
-
+        
         //with these two lines the code sets DirectionJoyL to the vector that comes up from the Left joystik of the Xbox One controller
         DirectionJoyL.x = Input.GetAxis(playerNumber+"LeftJoyX");
         DirectionJoyL.y = Input.GetAxis(playerNumber+"LeftJoyY");
@@ -71,8 +76,9 @@ public class Shoot : MonoBehaviour
 
     //this function spawns bullets and destroys them after 3 seconds
     void SpawnBullet(){
+        float angle = gameObject.GetComponentInChildren<WeaponDirection>().direction;
 
-        GameObject bullet = (GameObject)Instantiate(bulletPrefab, transform.position + new Vector3(0.4f * GameObject.Find(player).GetComponent<Movement>().side, 0,0), transform.rotation);
+        GameObject bullet = (GameObject)Instantiate(bulletPrefab, SpawnPoint.position , new Quaternion(0, 0, angle, 0) );
         Destroy(bullet, 3);//Cambiar on collision con los bordes del mapa
         
     }

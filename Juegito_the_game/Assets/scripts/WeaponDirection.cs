@@ -8,10 +8,10 @@ public class WeaponDirection : MonoBehaviour {
     Vector2 directionVec;
     Vector2 standardVec;
     public string playerNumber;
-    private float direction;
     private float xAxis;
     public float xAxisRaw;
     public float yAxis;
+    public float direction;
     public bool facingRight;
 
 	void Start () {
