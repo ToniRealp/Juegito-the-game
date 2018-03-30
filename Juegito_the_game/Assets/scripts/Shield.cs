@@ -13,6 +13,7 @@ public class Shield : MonoBehaviour {
     private float coolDown = 5f;
     private float duration = 3f;
     private bool isCheck;
+    public bool shielded;
     Movement movementScript;
     Shoot shootScript;
 
@@ -42,6 +43,8 @@ public class Shield : MonoBehaviour {
         {
             movementScript.enabled = false;
             shootScript.enabled = false;
+            shielded = true;
+
 
             if (isCheck == false)
             {
@@ -53,6 +56,7 @@ public class Shield : MonoBehaviour {
             {
                 trigger.isTrigger = true;
                 isCheck = false;
+                shielded = false;
             }
         }
         else
