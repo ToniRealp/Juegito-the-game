@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 99
+  controlID: 577
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 492}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 1
-  controlID: 100
+  controlID: 578
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -150,7 +150,7 @@ MonoBehaviour:
   - {fileID: 5}
   - {fileID: 2}
   m_Selected: 1
-  m_LastSelected: 1
+  m_LastSelected: 0
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -179,14 +179,14 @@ MonoBehaviour:
     height: 655
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 2041.8980981036846
+  lastFramingTime: 4998.421057295543
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 7.1121926, y: 1.6473718, z: -0.111328125}
+    m_Target: {x: 6.894651, y: 5.513474, z: -0.20703125}
     speed: 2
-    m_Value: {x: 7.1121926, y: 1.6473718, z: -0.111328125}
+    m_Value: {x: 6.894651, y: 5.513474, z: -0.20703125}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -214,9 +214,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 14.240165
+    m_Target: 23.51467
     speed: 2
-    m_Value: 14.240165
+    m_Value: 23.51467
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 43
+  controlID: 579
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,8 +270,8 @@ MonoBehaviour:
     y: 0
     width: 739
     height: 271
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -306,9 +306,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 88310000
-    m_LastClickedID: 12680
-    m_ExpandedIDs: 9efbffff000000008831000036320000
+    m_SelectedIDs: ec290000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 86dcffffe0dfffffb4e1ffffbce2ffff0ae4ffff96e5ffff9ce7ffff16e9ffff8ceaffffa8ecffff9efbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -395,19 +395,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/sprites
+    - Assets/scene
   m_ViewMode: 1
   m_StartGridSize: 57
   m_LastFolders:
-  - Assets/sprites
+  - Assets/scene
   m_LastFoldersGridSize: 57
   m_LastProjectPath: D:\Repositories\Juegito_the_game\Juegito_the_game
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7e290000
-    m_LastClickedID: 10622
-    m_ExpandedIDs: 00000000a02800007e290000a82900004c38000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 59}
+    m_SelectedIDs: 622a0000
+    m_LastClickedID: 10850
+    m_ExpandedIDs: 00000000a02800007e290000a82900009038000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -435,7 +435,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a02800007e290000a82900004c380000
+    m_ExpandedIDs: 00000000a02800007e290000a82900009038000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -460,10 +460,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 88310000
-    m_LastClickedInstanceID: 12680
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c6230000042b0000123d00005e2b00003e2b0000
+    m_SelectedInstanceIDs: ec290000
+    m_LastClickedInstanceID: 10732
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c6230000042b0000123d00005e2b00003e2b0000e4ab0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
