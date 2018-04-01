@@ -106,10 +106,14 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 713, y: 492}
-  m_MaxSize: {x: 18008, y: 14042}
+  m_MinSize: {x: 711, y: 492}
+  m_MaxSize: {x: 18006, y: 14042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 681
+=======
+  controlID: 3574
+>>>>>>> master
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -130,10 +134,14 @@ MonoBehaviour:
     y: 0
     width: 1478
     height: 947
-  m_MinSize: {x: 436, y: 492}
-  m_MaxSize: {x: 14006, y: 14042}
+  m_MinSize: {x: 434, y: 492}
+  m_MaxSize: {x: 14004, y: 14042}
   vertical: 1
+<<<<<<< HEAD
   controlID: 660
+=======
+  controlID: 3575
+>>>>>>> master
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -180,10 +188,14 @@ MonoBehaviour:
     y: 676
     width: 1478
     height: 271
-  m_MinSize: {x: 436, y: 271}
-  m_MaxSize: {x: 14006, y: 10021}
+  m_MinSize: {x: 434, y: 271}
+  m_MaxSize: {x: 14004, y: 10021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 638
+=======
+  controlID: 3349
+>>>>>>> master
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -442,10 +454,17 @@ MonoBehaviour:
     height: 250
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 502a0000
     m_LastClickedID: 0
     m_ExpandedIDs: 38d3ffffa8d4ffffc4d5ffff86dcffffe0dfffffb4e1ffffbce2ffff0ae4ffff96e5ffff9ce7ffff16e9ffff8ceaffffa8ecffff9efbffff00000000
+=======
+    scrollPos: {x: 0, y: 135}
+    m_SelectedIDs: e6390000
+    m_LastClickedID: 14822
+    m_ExpandedIDs: 8ae5ffff00000000a4360000ea3700005238000098380000c23c0000
+>>>>>>> master
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -464,7 +483,11 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
   m_ExpandedScenes:
+<<<<<<< HEAD
   - SandyLand
+=======
+  - main
+>>>>>>> master
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -507,6 +530,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
+<<<<<<< HEAD
     - Assets/scene
   m_ViewMode: 1
   m_StartGridSize: 57
@@ -520,6 +544,21 @@ MonoBehaviour:
     m_SelectedIDs: 622a0000
     m_LastClickedID: 10850
     m_ExpandedIDs: 00000000a02800007e290000a82900009038000000ca9a3bffffff7f
+=======
+    - Assets/sprites/Animations
+  m_ViewMode: 1
+  m_StartGridSize: 57
+  m_LastFolders:
+  - Assets/sprites/Animations
+  m_LastFoldersGridSize: 57
+  m_LastProjectPath: C:\Users\arnau\Desktop\ENTI\Projecte\Juegito_the_game\Juegito_the_game
+  m_IsLocked: 0
+  m_FolderTreeState:
+    scrollPos: {x: 0, y: 59}
+    m_SelectedIDs: de320000
+    m_LastClickedID: 13022
+    m_ExpandedIDs: 0000000052320000c2320000de320000a63d000000ca9a3bffffff7f
+>>>>>>> master
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -547,7 +586,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000a02800007e290000a82900009038000000ca9a3bffffff7f
+=======
+    m_ExpandedIDs: 0000000052320000c2320000de320000a63d000000ca9a3bffffff7f
+>>>>>>> master
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -574,8 +617,13 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
+<<<<<<< HEAD
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000042b0000123d00005e2b00003e2b0000e4ab0000
+=======
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c6230000042b0000123d00005e2b00003e2b0000
+>>>>>>> master
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -601,7 +649,11 @@ MonoBehaviour:
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 57
+<<<<<<< HEAD
   m_DirectoriesAreaWidth: 115
+=======
+  m_DirectoriesAreaWidth: 195
+>>>>>>> master
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -795,7 +847,7 @@ MonoBehaviour:
   m_AutoLiveLink: 1
   m_MiniTool: 0
   m_SerializedLocked: 0
-  m_CurrentEditor: 1
+  m_CurrentEditor: 0
   m_LayerEditor:
     m_SelectedLayerIndex: 0
 --- !u!114 &17
@@ -825,7 +877,7 @@ MonoBehaviour:
     width: 440
     height: 926
   m_PersistentViewDataDictionary: {fileID: 0}
-  m_ScrollPosition: {x: 0, y: 0}
+  m_ScrollPosition: {x: 0, y: 101.95508}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: -160
