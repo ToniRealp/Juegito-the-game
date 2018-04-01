@@ -39,9 +39,9 @@ public class WeaponDirection : MonoBehaviour {
             direction = Vector2.Angle(standardVec, directionVec);
         
         armTransform.eulerAngles = new Vector3(0, 0, direction);
+
         PlayerFlip(-xAxisRaw);
        
-
 	}
     void PlayerFlip(float leftJoyX)
     {
@@ -52,6 +52,7 @@ public class WeaponDirection : MonoBehaviour {
             facingRight = !facingRight;
             Vector3 scale = transform.localScale;
             scale.x *= -1;
+            scale.y *= -1;
             transform.localScale = scale;
 
         }

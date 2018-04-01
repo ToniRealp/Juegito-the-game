@@ -9,11 +9,13 @@ public class Player1Animator : MonoBehaviour {
     public Animator shieldAnimator;
     public float xAxis;
     public bool shielded;
+    public Transform ult;
     
 
     void Start() {
 
         animator = GetComponent<Animator>();
+        ult = transform.GetChild(2);
 
     }
 
@@ -24,13 +26,13 @@ public class Player1Animator : MonoBehaviour {
         Jump();
         Crouch();
         Shield();
+        UltAnimation();
         xAxis = Mathf.Abs(Input.GetAxis(playerNumber + "LeftJoyX"));
+
     }
 
     private void Movement() {
 
-        
-        
         if (Input.GetAxis(playerNumber + "LeftJoyX") > 0.4f && Input.GetButton(playerNumber + "LB")==false && !shielded || Input.GetAxis(playerNumber + "LeftJoyX") < -0.4f && Input.GetButton(playerNumber + "LB")==false && !shielded)
         {
             animator.SetBool("isMoving", true);
@@ -50,6 +52,7 @@ public class Player1Animator : MonoBehaviour {
             animator.SetBool("onAir", true);
             flag = false;
         }
+
         if (GetComponent<Movement>().onFloor && !flag)
         {
             animator.SetBool("onAir", false);
@@ -71,6 +74,14 @@ public class Player1Animator : MonoBehaviour {
         if (shielded)
             shieldAnimator.SetBool("shield", true);
         else shieldAnimator.SetBool("shield", false);
+
+    }
+
+    private void UltAnimation()
+    {
+        if(gameObject.GetComponent<Shoot>().ultCharge==100)
+        ult.gameObject.SetActive(true);
+        else ult.gameObject.SetActive(false);
 
     }
     
