@@ -12,11 +12,12 @@ public class GameController : MonoBehaviour{
     public Text winnerText;
     bool gameOver;
     private bool paused = true;
-
+    public int numPlayers;
 
     // Use this for initialization
     void Start (){
         CheckForPlayers();
+        SetPlayers();
         gameOver = false;
         gameOverParent.SetActive(false);
         
@@ -34,6 +35,26 @@ public class GameController : MonoBehaviour{
         
         //if one player remains, that player is winner and game over, press A to restart
 	}
+
+    void SetPlayers()
+    {
+       numPlayers = StaticValues.playerNumber;
+
+        if(numPlayers == 2)
+        {
+            players[0].SetActive(false);
+            players[3].SetActive(false);
+            Destroy(players[0]);
+            Destroy(players[3]);
+        }
+        if(numPlayers == 3)
+        {
+            players[3].SetActive(false);
+            Destroy(players[3]);
+        }
+
+        players = GameObject.FindGameObjectsWithTag("Player");
+    }
 
     bool CheckForPlayers (){
 
@@ -57,7 +78,7 @@ public class GameController : MonoBehaviour{
         winnerText.text = "Winner: " + winner.name;
 
         if (Input.GetButtonDown("P1_XboxA")|| Input.GetButtonDown("P2_XboxA"))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene("Menu");
 
     }
 
