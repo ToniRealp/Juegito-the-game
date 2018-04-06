@@ -45,7 +45,7 @@ public class PickUp1 : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player") { 
-            other.GetComponent<EffectsManager>().current = myEffect;
+            other.GetComponent<EffectsManager>().next = myEffect;
             other.GetComponent<EffectsManager>().time = effectDuration;
             Destroy(gameObject);
         }

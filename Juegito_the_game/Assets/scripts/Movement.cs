@@ -113,7 +113,11 @@ public class Movement : MonoBehaviour{
 
         if (Input.GetButtonDown(playerNumber+"XboxA"))
             jumping = true;
-        
+
+        if (Input.GetButtonDown(playerNumber + "XboxY")) {
+            GetComponent<EffectsManager>().current = GetComponent<EffectsManager>().next;
+            GetComponent<EffectsManager>().next = EffectsManager.Effect.None;
+        }
     }
 
     void ResetValues(){

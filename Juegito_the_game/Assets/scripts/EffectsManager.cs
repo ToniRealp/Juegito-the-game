@@ -6,12 +6,14 @@ public class EffectsManager : MonoBehaviour {
 
     public enum Effect{ Wheight, Fly, Jump, Venom, UltCharge, Blast, None };
     public int time;
+    public Effect next;
     public Effect current;
     bool flyed = false;
     public GameObject me;
 
 	void Start () {
 		current = Effect.None;
+        next = Effect.None;
     }
 	
 	// Update is called once per frame
