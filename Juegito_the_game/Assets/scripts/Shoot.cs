@@ -46,6 +46,7 @@ public class Shoot : MonoBehaviour
                 DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0); // multiplicate that for 1 or -1 depending on were are you facing
 
             SpawnBullet();
+
             venom = false;
 
             timer = 0;
@@ -76,11 +77,12 @@ public class Shoot : MonoBehaviour
 
     //this function spawns bullets and destroys them after 3 seconds
     void SpawnBullet(){
+
         float angle = gameObject.GetComponentInChildren<WeaponDirection>().direction;
 
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, SpawnPoint.position , Quaternion.Euler(0,0,angle) );
         Destroy(bullet, 3);//Cambiar on collision con los bordes del mapa
-        
+
     }
 
     void SpawnUlt(){

@@ -24,7 +24,6 @@ public class Movement : MonoBehaviour{
         side = 1;
         venom = 1f;
         facingRight = true;
-
     }
 
     void Update(){
@@ -73,7 +72,7 @@ public class Movement : MonoBehaviour{
 
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
             leavingTheGround = leftJoystickX;
-
+            
         }
     }
 
