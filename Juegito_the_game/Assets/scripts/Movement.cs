@@ -12,11 +12,11 @@ public class Movement : MonoBehaviour{
     public int onAirVelocity;
     public int side;
     public bool facingRight;
-    private bool grounded;
+    public bool grounded;
     private bool jumping;
     public bool onFloor;
     public float venom;
-    public string playerNumber;
+    //public string playerNumber;
 
 
     void Start(){
@@ -28,8 +28,8 @@ public class Movement : MonoBehaviour{
 
     void Update(){
 
-        leftJoystickY = Input.GetAxis(playerNumber+"LeftJoyY");
-        leftJoystickX = Input.GetAxis(playerNumber+"LeftJoyX");
+        leftJoystickY = GetComponent<InputManger>().leftJoystickY;
+        leftJoystickX = GetComponent<InputManger>().leftJoystickX;
         GetInput();
 
         if (venom == -1)
@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour{
 
     void PlayerJump(){
         
-        if (jumping && onFloor && Input.GetAxis(playerNumber+"LeftJoyY") != -1){
+        if (jumping && onFloor && GetComponent<InputManger>().leftJoystickY != -1){
 
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
             leavingTheGround = leftJoystickX;
@@ -104,16 +104,15 @@ public class Movement : MonoBehaviour{
 
     void GetInput(){
 
-        if (Input.GetButtonDown(playerNumber+"LB"))
+        if (GetComponent<InputManger>().lb)
             grounded = true;
-        
-        else if (Input.GetButtonUp(playerNumber+"LB"))
+        else if(GetComponent<InputManger>().lbUp)
             grounded = false;
 
-        if (Input.GetButtonDown(playerNumber+"XboxA"))
+        if (GetComponent<InputManger>().a)
             jumping = true;
 
-        if (Input.GetButtonDown(playerNumber + "XboxY")) {
+        if (GetComponent<InputManger>().y) {
             GetComponent<EffectsManager>().current = GetComponent<EffectsManager>().next;
             GetComponent<EffectsManager>().next = EffectsManager.Effect.None;
         }
