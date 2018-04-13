@@ -7,27 +7,22 @@ public class WeaponDirection : MonoBehaviour {
     Transform armTransform;
     Vector2 directionVec;
     Vector2 standardVec;
-    public string playerNumber;
-    private float xAxis;
-    public float xAxisRaw;
-    public float yAxis;
     public float direction;
     public bool facingRight;
+    //Input
+    private float xAxis;
+    public float yAxis;
 
-	void Start () {
+    void Start () {
 
         armTransform = GetComponent<Transform>();
         standardVec = new Vector2(1, 0);
 
     }
 	
-	// Update is called once per frame
 	void Update () {
 
-        xAxisRaw = Input.GetAxis(playerNumber + "LeftJoyX");
-        xAxis = xAxisRaw;
-        yAxis = Input.GetAxis(playerNumber + "LeftJoyY");
-        directionVec = new Vector2(xAxis, yAxis);
+        InputManagerScript();
 
         if (yAxis == 0 && xAxis == 0 && facingRight == false)
             direction =0;
@@ -40,9 +35,10 @@ public class WeaponDirection : MonoBehaviour {
         
         armTransform.eulerAngles = new Vector3(0, 0, direction);
 
-        PlayerFlip(-xAxisRaw);
+        PlayerFlip(-xAxis);
        
 	}
+
     void PlayerFlip(float leftJoyX)
     {
 
@@ -56,5 +52,14 @@ public class WeaponDirection : MonoBehaviour {
             transform.localScale = scale;
 
         }
+    }
+
+    void InputManagerScript()
+    {
+        
+        xAxis = GetComponentInParent<InputManger>().leftJoystickX;
+        yAxis = GetComponentInParent<InputManger>().leftJoystickY;
+        directionVec = new Vector2(xAxis, yAxis);
+
     }
 }

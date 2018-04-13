@@ -17,11 +17,11 @@ public class InputManger : MonoBehaviour
     public bool lb;
     public bool lbUp;
     public bool rb;
+    public bool XboxLbNd;
 
     // Use this for initialization
     void Start()
     {
-        a = false;
     }
 
     // Update is called once per frame
@@ -30,13 +30,13 @@ public class InputManger : MonoBehaviour
         leftJoystickY = Input.GetAxis(playerNumber + "LeftJoyY");
         leftJoystickX = Input.GetAxis(playerNumber + "LeftJoyX");
         rt = Input.GetAxis(playerNumber + "RT");
-        rt = Input.GetAxis(playerNumber + "RT");
+        lt = Input.GetAxis(playerNumber + "LT");
         XboxA();
         XboxX();
         XboxY();
         XboxLb();
         XboxLbUp();
-
+        XboxLbNotdown();
 
     }
 
@@ -78,5 +78,13 @@ public class InputManger : MonoBehaviour
             lbUp = true;
         else
             lbUp = false;
+    }
+
+    void XboxLbNotdown()
+    {
+        if (Input.GetButton(playerNumber + "LB"))
+            XboxLbNd = true;
+        else
+            XboxLbNd = false;
     }
 }
