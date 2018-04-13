@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Player1Animator : MonoBehaviour {
 
-    public string playerNumber;
     public Animator animator;
     public Animator shieldAnimator;
-    public float xAxis;
     public bool shielded;
     public Transform ult;
-    
+
+    //Input
+    public bool XboxLbNd;
+    public float leftJoystickY;
+    public float leftJoystickX;
+    public float xAxis;
+
 
     void Start() {
 
@@ -21,19 +25,20 @@ public class Player1Animator : MonoBehaviour {
 
     void Update () {
 
-        shielded = GetComponentInChildren<Shield>().shielded;
+        InputContollerScript();
+
         Movement();
         Jump();
         Crouch();
         Shield();
         UltAnimation();
-        xAxis = Mathf.Abs(Input.GetAxis(playerNumber + "LeftJoyX"));
+        xAxis = Mathf.Abs(leftJoystickX);
 
     }
 
     private void Movement() {
 
-        if (Input.GetAxis(playerNumber + "LeftJoyX") > 0.4f && Input.GetButton(playerNumber + "LB")==false && !shielded || Input.GetAxis(playerNumber + "LeftJoyX") < -0.4f && Input.GetButton(playerNumber + "LB")==false && !shielded)
+        if (leftJoystickX > 0.4f && XboxLbNd == false && !shielded || leftJoystickX < -0.4f && XboxLbNd==false && !shielded)
         {
             animator.SetBool("isMoving", true);
             animator.SetFloat("movementSpeed", xAxis);
@@ -63,7 +68,7 @@ public class Player1Animator : MonoBehaviour {
 
     private void Crouch()
     {
-        if (Input.GetAxis(playerNumber + "LeftJoyY") == -1)
+        if (leftJoystickY == -1)
             animator.SetBool("crouched", true);
         else animator.SetBool("crouched", false);
 
@@ -82,6 +87,16 @@ public class Player1Animator : MonoBehaviour {
         if(gameObject.GetComponent<Shoot>().ultCharge==100)
         ult.gameObject.SetActive(true);
         else ult.gameObject.SetActive(false);
+
+    }
+
+    private void InputContollerScript()
+    {
+
+        shielded = GetComponentInChildren<Shield>().shielded;
+        XboxLbNd = GetComponent<InputManger>().XboxLbNd;
+        leftJoystickX = GetComponent<InputManger>().leftJoystickX;
+        leftJoystickY = GetComponent<InputManger>().leftJoystickY;
 
     }
     

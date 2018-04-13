@@ -42,9 +42,9 @@ public class GameController : MonoBehaviour{
 
         if(numPlayers == 2)
         {
-            players[0].SetActive(false);
+            players[1].SetActive(false);
             players[3].SetActive(false);
-            Destroy(players[0]);
+            Destroy(players[1]);
             Destroy(players[3]);
         }
         if(numPlayers == 3)

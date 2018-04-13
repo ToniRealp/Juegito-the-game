@@ -10,20 +10,15 @@ public class Traspassing : MonoBehaviour{
     public GameObject Player4;
 
 
-    void OnCollisionStay2D(Collision2D collision){
+    void Start(){
+    
+        Player1 = GameObject.Find("Player1");
+        
+        Player2 = GameObject.Find("Player2");
 
+        Player3 = GameObject.Find("Player3");
 
-        if (collision.gameObject.name == "Player1")
-            Player1 = collision.gameObject;
-
-        if (collision.gameObject.name == "Player2")
-            Player2 = collision.gameObject;
-
-        if (collision.gameObject.name == "Player3")
-            Player3 = collision.gameObject;
-
-        if (collision.gameObject.name == "Player4")
-            Player4 = collision.gameObject;
+        Player4 = GameObject.Find("Player4");
 
     }
 

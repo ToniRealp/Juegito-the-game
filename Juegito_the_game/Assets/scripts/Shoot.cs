@@ -15,7 +15,7 @@ public class Shoot : MonoBehaviour
     public float maxCharge;
     public float shotCharge = 0;
     public int ultCharge = 0;
-    public string playerNumber;
+    //public string playerNumber;
     public string player;
     public bool venom = false;
 
@@ -29,23 +29,24 @@ public class Shoot : MonoBehaviour
     void Update(){
         
         //with these two lines the code sets DirectionJoyL to the vector that comes up from the Left joystik of the Xbox One controller
-        DirectionJoyL.x = Input.GetAxis(playerNumber+"LeftJoyX");
-        DirectionJoyL.y = Input.GetAxis(playerNumber+"LeftJoyY");
+        DirectionJoyL.x = GetComponent<InputManger>().leftJoystickX;
+        DirectionJoyL.y = GetComponent<InputManger>().leftJoystickY;
         DirectionJoyL.Normalize();
 
-        if (Input.GetAxis(playerNumber+"RT") != 0){
+        if (GetComponent<InputManger>().rt != 0){
 
             if (shotCharge < maxCharge)
                 shotCharge += Time.deltaTime;
 
         }
 
-        if (timer > cadency && Input.GetAxis(playerNumber+"RT") == 0 && shotCharge != 0){
+        if (timer > cadency && GetComponent<InputManger>().rt == 0 && shotCharge != 0){
 
             if (DirectionJoyL == new Vector2(0, 0))
                 DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0); // multiplicate that for 1 or -1 depending on were are you facing
 
             SpawnBullet();
+
             venom = false;
 
             timer = 0;
@@ -57,7 +58,7 @@ public class Shoot : MonoBehaviour
 
         }
 
-        if (Input.GetAxis(playerNumber+"LT") != 0 && ultCharge == 100){
+        if (GetComponent<InputManger>().lt != 0 && ultCharge == 100){
 
             if (DirectionJoyL == new Vector2(0, 0))
                 DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0);
@@ -76,11 +77,12 @@ public class Shoot : MonoBehaviour
 
     //this function spawns bullets and destroys them after 3 seconds
     void SpawnBullet(){
+
         float angle = gameObject.GetComponentInChildren<WeaponDirection>().direction;
 
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, SpawnPoint.position , Quaternion.Euler(0,0,angle) );
         Destroy(bullet, 3);//Cambiar on collision con los bordes del mapa
-        
+
     }
 
     void SpawnUlt(){

@@ -7,7 +7,7 @@ public class Shield : MonoBehaviour {
 
     private GameObject playerObject;
     private Collider2D trigger;
-    public string playerNumber;
+    //public string playerNumber;
     private float timer = 5f;
     private float timer2;
     private float coolDown = 5f;
@@ -33,7 +33,7 @@ public class Shield : MonoBehaviour {
         timer += Time.deltaTime;
         timer2 += Time.deltaTime;
 
-        if (timer > coolDown && Input.GetButtonDown(playerNumber + "XboxX"))
+        if (timer > coolDown && GetComponentInParent<InputManger>().x)
         {
             trigger.isTrigger = false;
             timer = 0f;
@@ -74,11 +74,4 @@ public class Shield : MonoBehaviour {
         }
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Bullet")
-        {
-            Destroy(collision.gameObject);
-        }
-    }*/
 }
