@@ -21,7 +21,7 @@ public class SoundController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        rtButton = Input.GetAxis(playerNumber + "RT");
+        rtButton = GetComponent<InputManger>().rt;
         //shootFx.volume = GetComponent<Shoot>().shotCharge;
 
         if (rtButton != 0 && flag){
