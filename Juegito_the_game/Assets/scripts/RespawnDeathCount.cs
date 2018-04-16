@@ -9,6 +9,7 @@ public class RespawnDeathCount : MonoBehaviour{
     public bool die = false;
     public bool lastHit = false;
     public string myPlayer;
+    public float timer;
 
 
 
@@ -40,14 +41,25 @@ public class RespawnDeathCount : MonoBehaviour{
 
             GetComponent<Rigidbody2D>().transform.position = new Vector2(0,3.2f);
             die = false;
+            timer = 2f;
+            gameObject.layer=13;
+            GetComponent<SpriteRenderer>().color = new Color(1,1,1,0.5f);
 
             if(lastHit)
             lastHitMe.GetComponent<Shoot>().ultCharge += 33;
 
             lastHit = false;
 
-        } 
-	}
+        }
+
+        timer -= Time.deltaTime;
+
+        if (timer <= 0)
+        {
+            gameObject.layer = 9;
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+    }
 
     IEnumerator Reset(float toWait)
     {

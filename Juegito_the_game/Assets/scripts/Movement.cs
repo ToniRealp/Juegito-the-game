@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour{
     float leavingTheGround;
     public int velocity;
     public int jumpForce;
+    public int dashForce;
     public int onAirVelocity;
     public int side;
     public bool facingRight;
@@ -42,6 +43,7 @@ public class Movement : MonoBehaviour{
         PlayerMovementXaxis();
         PlayerJump();
         PlayerFlip(leftJoystickX);
+        PlayerDash();
         ResetValues();
 
     }
@@ -74,6 +76,20 @@ public class Movement : MonoBehaviour{
             leavingTheGround = leftJoystickX;
             
         }
+    }
+
+    bool dashed = false;
+
+    void PlayerDash()
+    {
+        if (GetComponent<InputManger>().b && !onFloor && !dashed)
+        {
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(leftJoystickX * dashForce, leftJoystickY * dashForce * 3 / 2));
+            dashed = true;
+        }
+
+        if (onFloor)
+            dashed = false;
     }
 
     void OnCollisionStay2D(Collision2D collision){

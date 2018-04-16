@@ -34,6 +34,7 @@ public class InputManger : MonoBehaviour
         XboxA();
         XboxX();
         XboxY();
+        XboxB();
         XboxLb();
         XboxLbUp();
         XboxLbNotdown();
@@ -86,5 +87,13 @@ public class InputManger : MonoBehaviour
             XboxLbNd = true;
         else
             XboxLbNd = false;
+    }
+
+    void XboxB()
+    {
+        if (Input.GetButtonDown(playerNumber + "XboxB"))
+            b = true;
+        else
+            b = false;
     }
 }
