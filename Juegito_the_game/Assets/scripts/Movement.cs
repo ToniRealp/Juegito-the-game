@@ -82,7 +82,7 @@ public class Movement : MonoBehaviour{
 
     void PlayerDash()
     {
-        if (GetComponent<InputManger>().b && !onFloor && !dashed)
+        if (GetComponent<InputManger>().a && !onFloor && !dashed)
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(leftJoystickX * dashForce, leftJoystickY * dashForce * 3 / 2));
             dashed = true;
