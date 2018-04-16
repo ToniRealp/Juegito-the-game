@@ -18,6 +18,7 @@ public class CcurrentPickUp : MonoBehaviour {
                 GetComponent<SpriteRenderer>().sprite = jump;
                 break;
             case EffectsManager.Effect.Fly:
+                gameObject.GetComponent<Transform>().localScale = new Vector3(0.4f,0.4f,0);
                 GetComponent<SpriteRenderer>().sprite = fly;
                 break;
             case EffectsManager.Effect.Venom:
@@ -33,6 +34,7 @@ public class CcurrentPickUp : MonoBehaviour {
                 GetComponent<SpriteRenderer>().sprite = blast;
                 break;
             case EffectsManager.Effect.None:
+                gameObject.GetComponent<Transform>().localScale = new Vector3(1, 1  , 0);
                 GetComponent<SpriteRenderer>().sprite = none;
                 break;
         }

@@ -16,6 +16,7 @@ public class PickUp1 : MonoBehaviour {
                 break;
 
             case EffectsManager.Effect.Jump:
+                gameObject.GetComponent<Transform>().localScale = new Vector3(0.3f, 1f, 0);
                 GetComponent<SpriteRenderer>().sprite = jump;
                 break;
 

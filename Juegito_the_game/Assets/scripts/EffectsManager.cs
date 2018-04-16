@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class EffectsManager : MonoBehaviour {
 
+    public GameObject bombPrefab;
     public enum Effect{ Wheight, Fly, Jump, Venom, UltCharge, Blast, None };
     public int time;
     public Effect next;
     public Effect current;
     bool flyed = false;
     public GameObject me;
+    public Transform SpawnPoint;
 
-	void Start () {
+    void Start () {
 		current = Effect.None;
         next = Effect.None;
+        SpawnPoint = transform.GetChild(0).GetChild(0).GetChild(0).transform;
     }
 	
 	// Update is called once per frame
@@ -47,16 +50,9 @@ public class EffectsManager : MonoBehaviour {
                 break;
 
             case Effect.Blast:
-                CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
 
-                for (int i = 0; i < camera.players.Length; i++){
-                    Vector3 dist;
-                    dist =(camera.players[i].GetComponent<Transform>().position - GetComponent<Transform>().position);
-                    camera.players[i].GetComponent<RespawnDeathCount>().lastHitMe = me;
-                    camera.players[i].GetComponent<RespawnDeathCount>().lastHit = true;
-                    camera.players[i].GetComponent<Rigidbody2D>().AddForce(dist.normalized * 6000);
-                }
-
+                GameObject bomb = (GameObject)Instantiate(bombPrefab, SpawnPoint.position, Quaternion.Euler(0, 0, 0));
+                bomb.GetComponent<Explode>().owner = me;
                 current = Effect.None;
                 break;
 
