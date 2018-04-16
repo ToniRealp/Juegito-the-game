@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour{
     float leavingTheGround;
     public int velocity;
     public int jumpForce;
-    public int dashForce;
+    public Vector2 dashForce;
     public int onAirVelocity;
     public int side;
     public bool facingRight;
@@ -84,7 +84,7 @@ public class Movement : MonoBehaviour{
     {
         if (GetComponent<InputManger>().a && !onFloor && !dashed)
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(leftJoystickX * dashForce, leftJoystickY * dashForce * 3 / 2));
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(leftJoystickX * dashForce.x, leftJoystickY * dashForce.y));
             dashed = true;
         }
 
