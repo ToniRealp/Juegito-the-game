@@ -84,7 +84,10 @@ public class Movement : MonoBehaviour{
     {
         if (GetComponent<InputManger>().a && !onFloor && !dashed)
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(leftJoystickX * dashForce.x, leftJoystickY * dashForce.y));
+            if(leftJoystickX==0 && leftJoystickY==0)
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(leftJoystickY*dashForce.x, dashForce.y));
+            else
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(leftJoystickX * dashForce.x, leftJoystickY * dashForce.y));
             dashed = true;
         }
 
