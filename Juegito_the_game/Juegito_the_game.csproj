@@ -280,6 +280,7 @@
     <Compile Include="Assets\scripts\GunSize.cs" />
     <Compile Include="Assets\scripts\InputManger.cs" />
     <Compile Include="Assets\scripts\MainMenu.cs" />
+    <Compile Include="Assets\scripts\MeleeUlt.cs" />
     <Compile Include="Assets\scripts\Movement.cs" />
     <Compile Include="Assets\scripts\PickUp1.cs" />
     <Compile Include="Assets\scripts\PickUpSpawner.cs" />
