@@ -10,6 +10,7 @@ public class InputManger : MonoBehaviour
     public float leftJoystickX;
     public float rt;
     public float lt;
+    public bool pauseButton;
     public bool a;
     public bool x;
     public bool y;
@@ -38,6 +39,7 @@ public class InputManger : MonoBehaviour
         XboxLb();
         XboxLbUp();
         XboxLbNotdown();
+        Pause();
 
     }
 
@@ -95,5 +97,16 @@ public class InputManger : MonoBehaviour
             b = true;
         else
             b = false;
+    }
+
+    void Pause()
+    {
+        if (Input.GetButtonDown(playerNumber + "XboxP"))
+        {
+            pauseButton = true;
+            Debug.Log("pause");
+        }
+        else
+            pauseButton = false;
     }
 }

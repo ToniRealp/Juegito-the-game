@@ -11,8 +11,9 @@ public class GameController : MonoBehaviour{
     public GameObject gameOverParent;
     public Text winnerText;
     bool gameOver;
-    private bool paused = true;
+    public bool paused = true;
     public int numPlayers;
+    public bool waitOver = false;
 
     // Use this for initialization
     void Start (){
@@ -92,6 +93,15 @@ public class GameController : MonoBehaviour{
                 p.GetComponent<Movement>().enabled = false;
             }
             gameObject.GetComponent<PickUpSpawner>().enabled = false;
+        } else
+        {
+            foreach (GameObject p in players)
+            {
+                p.GetComponent<Shoot>().enabled = true;
+                p.GetComponent<Player1Animator>().enabled = true;
+                p.GetComponent<Movement>().enabled = true;
+            }
+            GetComponent<PickUpSpawner>().enabled = true;
         }
     }
 
@@ -99,6 +109,7 @@ public class GameController : MonoBehaviour{
     {
         yield return new WaitForSeconds(toWait);
         paused = false;
+        waitOver = true;
         foreach (GameObject p in players)
         {
             p.GetComponent<Shoot>().enabled = true;
