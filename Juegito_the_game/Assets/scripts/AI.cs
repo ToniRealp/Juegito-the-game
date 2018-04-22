@@ -8,10 +8,15 @@ public class AI : MonoBehaviour {
     public Vector3 vel;
     public bool imSafe;
     public bool onPlat;
+    public bool charging;
     public LayerMask lm;
+    public bool close = false;
     private int side;
-    public int movX = 1;
+    private float objCharge;
+    public float movX = 1;
+    public float movY = 0;
     private float delay = 0.5f;
+    public float shotDdelay = 0.5f;
     GameObject[] players;
     GameObject targget;
 
@@ -33,15 +38,70 @@ public class AI : MonoBehaviour {
         onPlat = OnPlatform();
         targget = findClosest();
 
+        bool clear = clearShot();
+
         avoidFalling();
+
+        input.XboxLbNd = false;
+        input.lb = false;
+        input.lbUp = true;
+
         seek();
-        
- 
+        charge();
+        usePickUp();
+
 
         input.leftJoystickX = movX;
+        input.leftJoystickY = movY;
     }
 
     #region behaviours
+
+    void usePickUp()
+    {
+        input.y = false;
+        if (GetComponent<EffectsManager>().next != EffectsManager.Effect.None)
+            input.y = true;
+    }
+
+    void charge() {
+        input.lt = 0;
+        float num = Random.value;
+        if (close && GetComponent<Shoot>().ultCharge == 100 && num > 0.99) {
+            aim();
+            input.lt = 1;
+        }
+
+        if(shotDdelay >= 0.5f) { 
+            if(!charging) { 
+                objCharge = Random.value;
+                charging = true;
+            }
+            if(charging && GetComponent<Shoot>().shotCharge < objCharge){
+                input.rt = 1;
+            }
+            else if(charging && GetComponent<Shoot>().shotCharge >= objCharge){ // try to fix crazy bullets here
+                aim();
+                side = (targget.GetComponent<Transform>().position.x < pos.x) ? -1 : 1;
+                input.rt = 0;
+                charging = false;
+                shotDdelay = 0;
+            }
+        }
+        else {
+            shotDdelay += Time.deltaTime;
+        }
+
+    }
+
+    void aim()
+    {
+        Vector2 aim = new Vector2(targget.GetComponent<Transform>().position.x - pos.x, targget.GetComponent<Transform>().position.y - pos.y);
+        aim.Normalize();
+        movX = aim.x;
+        movY = aim.y;
+}
+
     void avoidFalling()
     {
         if (imSafe)
@@ -61,9 +121,13 @@ public class AI : MonoBehaviour {
         float targgX = targget.GetComponent<Transform>().position.x;
         float targY = targget.GetComponent<Transform>().position.y;
 
-        if (pos.y >= targY - 2 && onPlat && pos.x < targgX + 10 && pos.x > targgX - 10)
+        if (pos.y >= targY - 3 && pos.y <= targY + 8 && onPlat && pos.x < targgX + 10 && pos.x > targgX - 10)
         {
-            movX = 0;
+            close = true;
+            //press lb and shoot
+            input.XboxLbNd = true;
+            input.lb = true;
+            input.lbUp = false;
         }
 
         else {
@@ -113,11 +177,21 @@ public class AI : MonoBehaviour {
                 }
             }
         }
+        Debug.Log(gameObject.name + ": " + _targget);
         return _targget;
     }
 #endregion
 
     #region checks
+    bool clearShot()
+    {
+        Vector2 aim = new Vector2(targget.GetComponent<Transform>().position.x - pos.x, targget.GetComponent<Transform>().position.y - pos.y);
+        aim.Normalize();
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, aim, 20, ~lm);
+        Debug.DrawRay(transform.position, aim * 20f, Color.cyan);
+        return hit;
+    }
+
     bool ableToJump()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(side, 0, 0)*4, Vector2.down, 20, ~lm);
