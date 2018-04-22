@@ -25,8 +25,8 @@ public class PauseGame : MonoBehaviour {
     {
         if (im.pauseButton)
         {
-            //if (gc.waitOver)
-            //{
+            if (gc.waitOver)
+            {
                 if (gc.paused)
                 {
                     pausePanel.SetActive(false);
@@ -37,19 +37,22 @@ public class PauseGame : MonoBehaviour {
                     pausePanel.SetActive(true);
                     gc.paused = true;
                 }
-            //}
+            }
         }
 
-        if(gc.paused)
+        if (gc.waitOver)
         {
-            if (im.a)
+            if (gc.paused)
             {
-                SceneManager.LoadScene("Menu");
-            }
-            if (im.b)
-            {
-                pausePanel.SetActive(false);
-                gc.paused = false;
+                if (im.a)
+                {
+                    SceneManager.LoadScene("Menu");
+                }
+                if (im.b)
+                {
+                    pausePanel.SetActive(false);
+                    gc.paused = false;
+                }
             }
         }
     }
