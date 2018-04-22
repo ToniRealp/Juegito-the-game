@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour{
     public int numPlayers;
     public bool waitOver = false;
 
+
     // Use this for initialization
     void Start (){
         CheckForPlayers();
@@ -88,18 +89,24 @@ public class GameController : MonoBehaviour{
         if (paused) { 
             foreach (GameObject p in players)
             {
-                p.GetComponent<Shoot>().enabled = false;
-                p.GetComponent<Player1Animator>().enabled = false;
-                p.GetComponent<Movement>().enabled = false;
+                if (p != null)
+                {
+                    p.GetComponent<Shoot>().enabled = false;
+                    p.GetComponent<Player1Animator>().enabled = false;
+                    p.GetComponent<Movement>().enabled = false;
+                }
             }
             gameObject.GetComponent<PickUpSpawner>().enabled = false;
         } else
         {
             foreach (GameObject p in players)
             {
-                p.GetComponent<Shoot>().enabled = true;
-                p.GetComponent<Player1Animator>().enabled = true;
-                p.GetComponent<Movement>().enabled = true;
+                if (p != null)
+                {
+                    p.GetComponent<Shoot>().enabled = true;
+                    p.GetComponent<Player1Animator>().enabled = true;
+                    p.GetComponent<Movement>().enabled = true;
+                }
             }
             GetComponent<PickUpSpawner>().enabled = true;
         }
