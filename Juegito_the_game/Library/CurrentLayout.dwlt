@@ -20,7 +20,11 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
+<<<<<<< Updated upstream
   m_MinSize: {x: 950, y: 471}
+=======
+  m_MinSize: {x: 950, y: 300}
+>>>>>>> Stashed changes
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -109,7 +113,15 @@ MonoBehaviour:
   m_MinSize: {x: 581, y: 421}
   m_MaxSize: {x: 12006, y: 8042}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 29
+=======
+<<<<<<< Updated upstream
+  controlID: 3095
+=======
+  controlID: 52
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +145,15 @@ MonoBehaviour:
   m_MinSize: {x: 304, y: 421}
   m_MaxSize: {x: 8004, y: 8042}
   vertical: 1
+<<<<<<< Updated upstream
   controlID: 30
+=======
+<<<<<<< Updated upstream
+  controlID: 3096
+=======
+  controlID: 10
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -183,7 +203,15 @@ MonoBehaviour:
   m_MinSize: {x: 304, y: 200}
   m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 31
+=======
+<<<<<<< Updated upstream
+  controlID: 3117
+=======
+  controlID: 67
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -397,9 +425,21 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< Updated upstream
     m_Target: {x: 4.9974103, y: 2.7199435, z: -0.057357807}
     speed: 2
     m_Value: {x: 4.9974103, y: 2.7199435, z: -0.057357807}
+=======
+<<<<<<< Updated upstream
+    m_Target: {x: -5.0577445, y: 0.5004208, z: -0.10803915}
+    speed: 2
+    m_Value: {x: -5.0577445, y: 0.5004208, z: -0.10803915}
+=======
+    m_Target: {x: 211.27519, y: 373.27103, z: -4.458994}
+    speed: 2
+    m_Value: {x: 211.27519, y: 373.27103, z: -4.458994}
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -427,9 +467,21 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< Updated upstream
     m_Target: 17.183897
     speed: 2
     m_Value: 17.183897
+=======
+<<<<<<< Updated upstream
+    m_Target: 11.85416
+    speed: 2
+    m_Value: 11.85416
+=======
+    m_Target: 552.85345
+    speed: 2
+    m_Value: 552.85345
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -470,9 +522,21 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< Updated upstream
     m_SelectedIDs: 34450000
     m_LastClickedID: 17716
     m_ExpandedIDs: 62bbffffd6f3ffff9efbffff0000000022400000
+=======
+<<<<<<< Updated upstream
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 62e3ffffa4eaffff000000002c410000aa410000b442000064430000b4440000e0450000
+=======
+    m_SelectedIDs: d4060000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 38f9ffff9efbffff00000000
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: Player4
@@ -544,9 +608,21 @@ MonoBehaviour:
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< Updated upstream
     m_SelectedIDs: 3c290000
     m_LastClickedID: 10556
     m_ExpandedIDs: 00000000b0280000662e0000862e00002a39000000ca9a3bffffff7f
+=======
+<<<<<<< Updated upstream
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 000000006030000086300000c2300000263100004e3100004a320000de3300007835000000ca9a3bffffff7f
+=======
+    m_SelectedIDs: 2e290000
+    m_LastClickedID: 10542
+    m_ExpandedIDs: 00000000a8280000d62800002e290000b0290000e6290000402b00006a2e00007830000000ca9a3bffffff7f
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -574,7 +650,15 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< Updated upstream
     m_ExpandedIDs: 00000000b0280000662e0000862e00002a390000
+=======
+<<<<<<< Updated upstream
+    m_ExpandedIDs: 000000006030000086300000c2300000263100004e3100004a320000de3300007835000000ca9a3bffffff7f
+=======
+    m_ExpandedIDs: 00000000a8280000d62800002e290000b0290000e6290000402b00006a2e000078300000
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
