@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-
 public class PauseGame : MonoBehaviour {
 
     InputManger im;
@@ -30,7 +29,6 @@ public class PauseGame : MonoBehaviour {
             {
                 if (gc.paused)
                 {
-                    Time.timeScale = 1;
                     pausePanel.SetActive(false);
                     gc.paused = false;
                 }
@@ -38,7 +36,6 @@ public class PauseGame : MonoBehaviour {
                 {
                     pausePanel.SetActive(true);
                     gc.paused = true;
-                    Time.timeScale = 0;
                 }
             }
         }
@@ -49,15 +46,12 @@ public class PauseGame : MonoBehaviour {
             {
                 if (im.a)
                 {
-                    Time.timeScale = 1;
                     SceneManager.LoadScene("Menu");
                 }
                 if (im.b)
                 {
-                    Time.timeScale = 1;
                     pausePanel.SetActive(false);
                     gc.paused = false;
-                    
                 }
             }
         }

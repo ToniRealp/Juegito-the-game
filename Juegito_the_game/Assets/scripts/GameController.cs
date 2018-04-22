@@ -94,9 +94,6 @@ public class GameController : MonoBehaviour{
                     p.GetComponent<Shoot>().enabled = false;
                     p.GetComponent<Player1Animator>().enabled = false;
                     p.GetComponent<Movement>().enabled = false;
-                    if (waitOver == true) { 
-                        p.GetComponent<Rigidbody2D>().isKinematic = true;
-                    }
                 }
             }
             gameObject.GetComponent<PickUpSpawner>().enabled = false;
@@ -109,7 +106,6 @@ public class GameController : MonoBehaviour{
                     p.GetComponent<Shoot>().enabled = true;
                     p.GetComponent<Player1Animator>().enabled = true;
                     p.GetComponent<Movement>().enabled = true;
-                    p.GetComponent<Rigidbody2D>().isKinematic = false;
                 }
             }
             GetComponent<PickUpSpawner>().enabled = true;
