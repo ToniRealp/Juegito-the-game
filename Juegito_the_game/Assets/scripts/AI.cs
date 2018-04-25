@@ -63,7 +63,7 @@ public class AI : MonoBehaviour {
         if (GetComponent<EffectsManager>().next != EffectsManager.Effect.None)
             input.y = true;
     }
-
+        
     void charge() {
         input.lt = 0;
         float num = Random.value;
@@ -73,8 +73,8 @@ public class AI : MonoBehaviour {
         }
 
         if(shotDdelay >= 0.5f) { 
-            if(!charging) { 
-                objCharge = Random.value;
+            if(!charging) {
+                objCharge = Random.Range(0.8f, 1);
                 charging = true;
             }
             if(charging && GetComponent<Shoot>().shotCharge < objCharge){
