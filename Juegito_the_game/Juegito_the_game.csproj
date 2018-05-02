@@ -287,6 +287,7 @@
   <ItemGroup>
     <Compile Include="Assets\ActualPick.cs" />
     <Compile Include="Assets\Explode.cs" />
+    <Compile Include="Assets\scripts\AI.cs" />
     <Compile Include="Assets\scripts\BallMovement.cs" />
     <Compile Include="Assets\scripts\CameraMovement.cs" />
     <Compile Include="Assets\scripts\CcurrentPickUp.cs" />
