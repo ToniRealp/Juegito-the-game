@@ -17,7 +17,7 @@ public class CountDown : MonoBehaviour {
         num.text = (int)time + "";
 
         if (time < 1){
-            num.text = "Fight!";
+            num.text = "FIGHT!";
         }
         if (time <= 0){
             gameObject.SetActive(false);
