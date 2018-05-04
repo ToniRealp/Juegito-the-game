@@ -86,11 +86,12 @@ public class GameController : MonoBehaviour{
 
    void PauseGame()
     {
-        if (paused) { 
+        if (paused) {
             foreach (GameObject p in players)
             {
                 if (p != null)
                 {
+                    p.GetComponentInChildren<GunSize>().enabled = false;
                     p.GetComponent<Shoot>().enabled = false;
                     p.GetComponent<Player1Animator>().enabled = false;
                     p.GetComponent<Movement>().enabled = false;
@@ -99,10 +100,12 @@ public class GameController : MonoBehaviour{
             gameObject.GetComponent<PickUpSpawner>().enabled = false;
         } else
         {
+
             foreach (GameObject p in players)
             {
                 if (p != null)
                 {
+                    p.GetComponentInChildren<GunSize>().enabled = true;
                     p.GetComponent<Shoot>().enabled = true;
                     p.GetComponent<Player1Animator>().enabled = true;
                     p.GetComponent<Movement>().enabled = true;

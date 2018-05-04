@@ -29,11 +29,13 @@ public class PauseGame : MonoBehaviour {
             {
                 if (gc.paused)
                 {
+                    Time.timeScale = 1;
                     pausePanel.SetActive(false);
                     gc.paused = false;
                 }
                 else
                 {
+                    Time.timeScale = 0;
                     pausePanel.SetActive(true);
                     gc.paused = true;
                 }
@@ -44,12 +46,13 @@ public class PauseGame : MonoBehaviour {
         {
             if (gc.paused)
             {
-                if (im.a)
+                if (im.x)
                 {
                     SceneManager.LoadScene("Menu");
                 }
                 if (im.b)
                 {
+                    Time.timeScale = 1;
                     pausePanel.SetActive(false);
                     gc.paused = false;
                 }
