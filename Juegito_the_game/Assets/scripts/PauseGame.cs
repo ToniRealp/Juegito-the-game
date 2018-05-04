@@ -48,6 +48,7 @@ public class PauseGame : MonoBehaviour {
             {
                 if (im.x)
                 {
+                    Time.timeScale = 1;
                     SceneManager.LoadScene("Menu");
                 }
                 if (im.b)
