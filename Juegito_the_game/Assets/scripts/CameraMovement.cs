@@ -21,6 +21,7 @@ public class CameraMovement : MonoBehaviour {
     public float minPosX;
     public float maxPosY;
     public float minPosY;
+    public bool staticMap;
 
 
     // Update is called once per frame
@@ -30,7 +31,7 @@ public class CameraMovement : MonoBehaviour {
         UpdatePlayers();
         float movement = cameraSpeed * Time.deltaTime;
 
-        if (numPlayers == 2){
+        if (numPlayers == 2 && !staticMap){
 
             Yoffset = 3;
 
@@ -52,7 +53,7 @@ public class CameraMovement : MonoBehaviour {
 
         transform.position = Vector3.MoveTowards(transform.position, mid + new Vector3(0, Yoffset, -1), movement);
 
-        if (numPlayers == 1)
+        if (numPlayers == 1 && !staticMap)
             transform.position = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position + new Vector3(0,0,-1);
         
 
