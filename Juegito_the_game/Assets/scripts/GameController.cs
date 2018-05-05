@@ -9,13 +9,15 @@ public class GameController : MonoBehaviour{
 
     public GameObject[] players = new GameObject[4];
     public GameObject[] playerScores = new GameObject[4];
-    private GameObject winner;
+    public GameObject winner;
     public GameObject gameOverParent;
     public Text winnerText;
     bool gameOver;
     public bool paused = true;
     public int numPlayers;
     public bool waitOver = false;
+    public GameObject colorPanel;
+    public Image colorPanelColor;
 
     private static int SortByName(GameObject o1, GameObject o2)
     {
@@ -46,6 +48,7 @@ public class GameController : MonoBehaviour{
 
     void SetPlayers()
     {
+       colorPanelColor = colorPanel.GetComponent<Image>();
        numPlayers = StaticValues.playerNumber;
 
         if(numPlayers == 2)
@@ -93,6 +96,36 @@ public class GameController : MonoBehaviour{
 
         gameOverParent.SetActive(true);
         winnerText.text = "Winner: " + winner.name;
+
+        if (winner.name == "Player1")
+        {
+            Color col = colorPanelColor.color;
+            col = new Color32(0, 33, 255, 255);
+            colorPanelColor.color = col;
+        }
+        else
+        if (winner.name == "Player2")
+        {
+            Color col = colorPanelColor.color;
+            col = new Color32(15, 220, 255, 255);
+            colorPanelColor.color = col;
+        }
+        else
+        if (winner.name == "Player3")
+        {
+            Color col = colorPanelColor.color;
+            col = new Color32(0, 228, 34, 255);
+            colorPanelColor.color = col;
+        }
+        else
+        if (winner.name == "Player4")
+        {
+            Color col = colorPanelColor.color;
+            col = new Color32(253, 183, 0, 255);
+            colorPanelColor.color = col;
+        }
+
+        
 
         if (Input.GetButtonDown("P1_XboxX")|| Input.GetButtonDown("P2_XboxX") || Input.GetButtonDown("P3_XboxX") || Input.GetButtonDown("P4_XboxX"))
             SceneManager.LoadScene("Menu");
