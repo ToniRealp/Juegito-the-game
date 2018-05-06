@@ -14,8 +14,9 @@ public class Shoot : MonoBehaviour
     public float lateralReduction;
     public float maxCharge;
     public float shotCharge = 0;
+    public float ltDown = 0;
+    private float ultChargeTime;
     public int ultCharge = 0;
-    //public string playerNumber;
     public string player;
     public bool venom = false;
 
@@ -24,6 +25,7 @@ public class Shoot : MonoBehaviour
     private void Start()
     {
         SpawnPoint = transform.GetChild(0).GetChild(0).GetChild(0).transform;
+        ultChargeTime = 1.5f;
     }
 
     void Update(){
@@ -58,13 +60,25 @@ public class Shoot : MonoBehaviour
 
         }
 
-        if (GetComponent<InputManger>().lt != 0 && ultCharge == 100){
+        if (GetComponent<InputManger>().lt > 0.8 && ultCharge == 100)
+        {
+            if (ltDown < ultChargeTime)
+                ltDown += Time.deltaTime;
+        }
 
-            if (DirectionJoyL == new Vector2(0, 0))
-                DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0);
+        if (GetComponent<InputManger>().lt == 0){
 
-            SpawnUlt();
-            ultCharge = 0;
+            if (ultCharge == 100 && ltDown > ultChargeTime) {
+
+                if (DirectionJoyL == new Vector2(0, 0))
+                    DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0);
+
+                SpawnUlt();
+                ultCharge = 0;
+                ltDown = 0;
+            }
+            else
+                ltDown = 0;
 
         }
 
