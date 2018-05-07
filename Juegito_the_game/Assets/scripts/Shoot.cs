@@ -15,7 +15,7 @@ public class Shoot : MonoBehaviour
     public float maxCharge;
     public float shotCharge = 0;
     public float ltDown = 0;
-    private float ultChargeTime;
+    public float ultChargeTime;
     public int ultCharge = 0;
     public string player;
     public bool venom = false;

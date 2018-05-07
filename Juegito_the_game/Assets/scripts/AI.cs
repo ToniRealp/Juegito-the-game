@@ -11,6 +11,7 @@ public class AI : MonoBehaviour {
     public bool charging;
     public LayerMask lm;
     public bool close = false;
+    public bool chargingUlt = false;
     private int side;
     private float objCharge;
     public float movX = 1;
@@ -66,10 +67,19 @@ public class AI : MonoBehaviour {
         
     void charge() {
         input.lt = 0;
-        float num = Random.value;
-        if (close && GetComponent<Shoot>().ultCharge == 100 && num > 0.99) {
-            aim();
-            input.lt = 1;
+        if (close && GetComponent<Shoot>().ultCharge == 100 && !chargingUlt) {
+            chargingUlt = true;     
+        }
+
+        if (chargingUlt){
+            if (GetComponent<Shoot>().ltDown <= GetComponent<Shoot>().ultChargeTime)
+                input.lt = 1;
+            else{
+                aim();
+                input.lt = 0;
+                chargingUlt = false;
+            }
+
         }
 
         if(shotDdelay >= 0.5f) { 
