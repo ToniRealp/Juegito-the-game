@@ -19,4 +19,14 @@ public class ValueSetter : MonoBehaviour {
     {
         StaticValues.playerNumber = 4;
     }
+
+    public void SetAIFalse()
+    {
+        StaticValues.aI = false;
+    }
+
+    public void SetAITrue()
+    {
+        StaticValues.aI = true;
+    }
 }
