@@ -101,7 +101,9 @@ public class Shoot : MonoBehaviour
 
     void SpawnUlt(){
 
-        GameObject ulti = (GameObject)Instantiate(ultiPrefab, GetComponent<Rigidbody2D>().transform.position, transform.rotation);
+        float angle = gameObject.GetComponentInChildren<WeaponDirection>().direction;
+
+        GameObject ulti = (GameObject)Instantiate(ultiPrefab, SpawnPoint.position, Quaternion.Euler(0, 0, angle));
 
     }
 
