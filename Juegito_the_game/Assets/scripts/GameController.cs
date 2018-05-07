@@ -51,13 +51,21 @@ public class GameController : MonoBehaviour{
        colorPanelColor = colorPanel.GetComponent<Image>();
        numPlayers = StaticValues.playerNumber;
 
+       if(StaticValues.aI == false)
+        {
+            players[1].GetComponent<AI>().enabled = false;
+        } else
+        {
+            players[1].GetComponent<AI>().enabled = true;
+        }
+
         if(numPlayers == 2)
         {
-            players[1].SetActive(false);
+            players[2].SetActive(false);
             players[3].SetActive(false);
             playerScores[2].SetActive(false);
             playerScores[3].SetActive(false);
-            Destroy(players[1]);
+            Destroy(players[2]);
             Destroy(players[3]);
             Destroy(playerScores[2]);
             Destroy(playerScores[3]);
@@ -78,6 +86,7 @@ public class GameController : MonoBehaviour{
 
         players = GameObject.FindGameObjectsWithTag("Player");
         playerScores = GameObject.FindGameObjectsWithTag("UIP");
+        Array.Sort(players, SortByName);
         Array.Sort(playerScores, SortByName);
 
         if (players.Length == 1){

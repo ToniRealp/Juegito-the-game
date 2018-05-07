@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CountDown : MonoBehaviour {
 
-    TextMesh num;
+    Text num;
     float time = 4;
 
     void Start () {
-        num = GetComponent<TextMesh>();
+        num = GetComponent<Text>();
         num.text = 3 + "";
     }
 	
