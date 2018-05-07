@@ -53,6 +53,7 @@ public class EffectsManager : MonoBehaviour {
 
                 GameObject bomb = (GameObject)Instantiate(bombPrefab, SpawnPoint.position, Quaternion.Euler(0, 0, 0));
                 bomb.GetComponent<Explode>().owner = me;
+
                 current = Effect.None;
                 break;
 

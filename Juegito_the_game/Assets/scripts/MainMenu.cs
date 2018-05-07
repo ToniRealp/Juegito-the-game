@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour {
     }
     public void PlayLevel2()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
     public void PlayLevel3()
     {

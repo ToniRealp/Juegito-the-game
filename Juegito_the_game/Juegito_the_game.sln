@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juegito_the_game", "Juegito_the_game.csproj", "{D29A3B8C-9EBA-C2D9-3E76-827E6C4E3156}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juegito_the_game.Editor", "Juegito_the_game.Editor.csproj", "{777FDD46-1000-56C7-48C8-81EB29BAB8AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{D29A3B8C-9EBA-C2D9-3E76-827E6C4E3156}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D29A3B8C-9EBA-C2D9-3E76-827E6C4E3156}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D29A3B8C-9EBA-C2D9-3E76-827E6C4E3156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{777FDD46-1000-56C7-48C8-81EB29BAB8AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{777FDD46-1000-56C7-48C8-81EB29BAB8AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{777FDD46-1000-56C7-48C8-81EB29BAB8AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{777FDD46-1000-56C7-48C8-81EB29BAB8AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

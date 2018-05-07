@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,14 +8,21 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour{
 
     public GameObject[] players = new GameObject[4];
-    private GameObject winner;
+    public GameObject[] playerScores = new GameObject[4];
+    public GameObject winner;
     public GameObject gameOverParent;
     public Text winnerText;
     bool gameOver;
     public bool paused = true;
     public int numPlayers;
     public bool waitOver = false;
+    public GameObject colorPanel;
+    public Image colorPanelColor;
 
+    private static int SortByName(GameObject o1, GameObject o2)
+    {
+        return o1.name.CompareTo(o2.name);
+    }
 
     // Use this for initialization
     void Start (){
@@ -40,28 +48,38 @@ public class GameController : MonoBehaviour{
 
     void SetPlayers()
     {
+       colorPanelColor = colorPanel.GetComponent<Image>();
        numPlayers = StaticValues.playerNumber;
 
         if(numPlayers == 2)
         {
             players[1].SetActive(false);
             players[3].SetActive(false);
+            playerScores[2].SetActive(false);
+            playerScores[3].SetActive(false);
             Destroy(players[1]);
             Destroy(players[3]);
+            Destroy(playerScores[2]);
+            Destroy(playerScores[3]);
         }
         if(numPlayers == 3)
         {
             players[3].SetActive(false);
+            playerScores[3].SetActive(false);
             Destroy(players[3]);
+            Destroy(playerScores[3]);
         }
 
         players = GameObject.FindGameObjectsWithTag("Player");
+        playerScores = GameObject.FindGameObjectsWithTag("UIP");
     }
 
     bool CheckForPlayers (){
 
         players = GameObject.FindGameObjectsWithTag("Player");
-    
+        playerScores = GameObject.FindGameObjectsWithTag("UIP");
+        Array.Sort(playerScores, SortByName);
+
         if (players.Length == 1){
 
             winner = players[0];
@@ -79,37 +97,66 @@ public class GameController : MonoBehaviour{
         gameOverParent.SetActive(true);
         winnerText.text = "Winner: " + winner.name;
 
-        if (Input.GetButtonDown("P1_XboxA")|| Input.GetButtonDown("P2_XboxA"))
+        if (winner.name == "Player1")
+        {
+            Color col = colorPanelColor.color;
+            col = new Color32(0, 33, 255, 255);
+            colorPanelColor.color = col;
+        }
+        else
+        if (winner.name == "Player2")
+        {
+            Color col = colorPanelColor.color;
+            col = new Color32(15, 220, 255, 255);
+            colorPanelColor.color = col;
+        }
+        else
+        if (winner.name == "Player3")
+        {
+            Color col = colorPanelColor.color;
+            col = new Color32(0, 228, 34, 255);
+            colorPanelColor.color = col;
+        }
+        else
+        if (winner.name == "Player4")
+        {
+            Color col = colorPanelColor.color;
+            col = new Color32(253, 183, 0, 255);
+            colorPanelColor.color = col;
+        }
+
+        
+
+        if (Input.GetButtonDown("P1_XboxX")|| Input.GetButtonDown("P2_XboxX") || Input.GetButtonDown("P3_XboxX") || Input.GetButtonDown("P4_XboxX"))
             SceneManager.LoadScene("Menu");
 
     }
 
    void PauseGame()
     {
-        if (paused) { 
+        if (paused) {
             foreach (GameObject p in players)
             {
                 if (p != null)
                 {
+                    p.GetComponentInChildren<GunSize>().enabled = false;
                     p.GetComponent<Shoot>().enabled = false;
                     p.GetComponent<Player1Animator>().enabled = false;
                     p.GetComponent<Movement>().enabled = false;
-                    if (waitOver == true) { 
-                        p.GetComponent<Rigidbody2D>().isKinematic = true;
-                    }
                 }
             }
             gameObject.GetComponent<PickUpSpawner>().enabled = false;
         } else
         {
+
             foreach (GameObject p in players)
             {
                 if (p != null)
                 {
+                    p.GetComponentInChildren<GunSize>().enabled = true;
                     p.GetComponent<Shoot>().enabled = true;
                     p.GetComponent<Player1Animator>().enabled = true;
                     p.GetComponent<Movement>().enabled = true;
-                    p.GetComponent<Rigidbody2D>().isKinematic = false;
                 }
             }
             GetComponent<PickUpSpawner>().enabled = true;
