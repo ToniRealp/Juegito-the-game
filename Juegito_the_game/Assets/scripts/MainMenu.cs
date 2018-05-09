@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour {
     }
     public void PlayLevel3()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
 
     public void QuitGame()

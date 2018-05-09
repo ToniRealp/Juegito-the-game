@@ -15,7 +15,7 @@ public class PlatformMovment : MonoBehaviour {
 	void Update () {
         currentT += Time.deltaTime;
         if(currentT >= timer) {
-            GameObject platform = (GameObject)Instantiate(PlatformPrefab, new Vector3(-10, 5.21f, 0), Quaternion.Euler(0, 0, 90));
+            GameObject platform = (GameObject)Instantiate(PlatformPrefab, new Vector3(-10, -1.5f, 0), Quaternion.Euler(0, 0, 90));
             platform.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 0, 0);
             currentT = 0;
 
