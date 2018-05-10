@@ -20,16 +20,19 @@ public class GunSize : MonoBehaviour {
         {
             growingU = true;
             GetComponent<Transform>().transform.localScale = GetComponent<Transform>().transform.localScale + new Vector3(ultCharge / 7, ultCharge / 7, 0);
+            gameObject.GetComponentInChildren<ParticleSystem>().Play();
         }
         if (charge < 1 && rtButton != 0 && !growingU)
         {
             growingS = true;
             GetComponent<Transform>().transform.localScale = GetComponent<Transform>().transform.localScale + new Vector3(charge / 14, charge / 14, 0);
+            GetComponentInChildren<ParticleSystem>().Play();
         }
 
         if (ltButton == 0 && rtButton == 0) {
             growingU = growingS = false;
             GetComponent<Transform>().transform.localScale = new Vector3(1.25f, 1.25f, 0);
+            GetComponentInChildren<ParticleSystem>().Stop();
         }
     }
 }
