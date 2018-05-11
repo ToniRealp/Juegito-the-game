@@ -33,9 +33,10 @@ public class Movement : MonoBehaviour{
         leftJoystickX = GetComponent<InputManger>().leftJoystickX;
         GetInput();
 
-        if (venom == -1)
+        if (venom == -1) { 
             StartCoroutine(WaitAndNormal(5));
-
+            GetComponent<SpriteRenderer>().color = new Color(139, 0, 139);
+        }
     }
 
     void FixedUpdate(){
@@ -146,6 +147,7 @@ public class Movement : MonoBehaviour{
     IEnumerator WaitAndNormal(float toWait)
     {
         yield return new WaitForSeconds(toWait);
+        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         venom = 1;
     }
 }
