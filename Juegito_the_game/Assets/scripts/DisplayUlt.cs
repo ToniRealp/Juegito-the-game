@@ -17,7 +17,7 @@ public class DisplayUlt : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (player != null)
-            UltCharge.text = player.GetComponent<Shoot>().ultCharge + "%";
+            UltCharge.text = player.GetComponent<Shoot>().ultCharge.ToString();
         else
             UltCharge.text = "KO";
         //transform.position = player.transform.position + new Vector3 (0.6f, 1.2f, 0);
