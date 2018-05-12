@@ -54,6 +54,7 @@ public class BallMovement : MonoBehaviour{
             size = 0.05f;
 
         transform.localScale = new Vector3(1, 1, 0) * size;
+        GetComponent<TrailRenderer>().widthMultiplier = size;
 
     }
 
