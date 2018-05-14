@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour{
     bool gameOver;
     public bool paused = true;
     public int numPlayers;
+    public int gameMode;
+    public float gameTimer;
     public bool waitOver = false;
     public GameObject colorPanel;
     public Image colorPanelColor;
@@ -30,6 +32,7 @@ public class GameController : MonoBehaviour{
         SetPlayers();
         gameOver = false;
         gameOverParent.SetActive(false);
+       
         
         StartCoroutine(CountDown(4));
 
@@ -37,10 +40,11 @@ public class GameController : MonoBehaviour{
 	
 	// Update is called once per frame
 	void Update (){
+        gameTimer -= Time.deltaTime;
         PauseGame();
         gameOver = CheckForPlayers();
 
-        if (gameOver)
+        if (gameOver||gameTimer<=0f)
             GameOver();
         
         //if one player remains, that player is winner and game over, press A to restart
@@ -104,6 +108,22 @@ public class GameController : MonoBehaviour{
     void GameOver(){
 
         gameOverParent.SetActive(true);
+        
+        if (winner == null)
+        {
+            int little = players[0].GetComponent<RespawnDeathCount>().deaths;
+            int littleNumber = 0;
+            for (int i = 0; i < players.Length; i++)
+            {
+                if (little > players[i].GetComponent<RespawnDeathCount>().deaths)
+                {
+                    littleNumber = i;
+                    little = players[i].GetComponent<RespawnDeathCount>().deaths;
+                }
+            }
+            winner= players[littleNumber];
+        }
+
         winnerText.text = "Winner: " + winner.name;
 
         if (winner.name == "Player1")
@@ -133,6 +153,7 @@ public class GameController : MonoBehaviour{
             col = new Color32(253, 183, 0, 255);
             colorPanelColor.color = col;
         }
+
 
         
 
@@ -170,7 +191,7 @@ public class GameController : MonoBehaviour{
             }
             GetComponent<PickUpSpawner>().enabled = true;
         }
-    }
+   }
 
     IEnumerator CountDown(float toWait)
     {
