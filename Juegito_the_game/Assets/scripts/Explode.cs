@@ -9,6 +9,7 @@ public class Explode : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(timeToParticles(2.9f));
         StartCoroutine(timeToExplode(3));
         //rb.AddForce(new Vector2(500 * owner.GetComponent<Movement>().side, 500));
 
@@ -19,8 +20,16 @@ public class Explode : MonoBehaviour {
 		
 	}
 
+    IEnumerator timeToParticles(float toWait)
+    {
+        yield return new WaitForSeconds(toWait);
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponentInChildren<ParticleSystem>().Play();
+    }
+
     IEnumerator timeToExplode(float toWait)
     {
+        gameObject.GetComponentInChildren<ParticleSystem>().Stop();
         yield return new WaitForSeconds(toWait);
         CameraMovement camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
 
