@@ -41,7 +41,6 @@ public class Shield : MonoBehaviour {
 
         if (trigger.isTrigger == false)
         {
-            movementScript.enabled = false;
             shootScript.enabled = false;
             shielded = true;
 

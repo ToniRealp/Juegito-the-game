@@ -38,7 +38,7 @@ public class Player1Animator : MonoBehaviour {
 
     private void Movement() {
 
-        if (leftJoystickX > 0.4f && XboxLbNd == false && !shielded || leftJoystickX < -0.4f && XboxLbNd==false && !shielded)
+        if (leftJoystickX > 0.4f && XboxLbNd == false || leftJoystickX < -0.4f && XboxLbNd==false)
         {
             animator.SetBool("isMoving", true);
             animator.SetFloat("movementSpeed", xAxis);
