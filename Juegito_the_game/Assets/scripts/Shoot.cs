@@ -48,6 +48,7 @@ public class Shoot : MonoBehaviour
                 DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0); // multiplicate that for 1 or -1 depending on were are you facing
 
             SpawnBullet();
+          
 
             venom = false;
 
@@ -74,6 +75,7 @@ public class Shoot : MonoBehaviour
                     DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0);
 
                 SpawnUlt();
+                
                 ultCharge = 0;
                 ltDown = 0;
             }
