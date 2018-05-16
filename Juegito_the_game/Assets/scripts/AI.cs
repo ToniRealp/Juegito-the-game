@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AI : MonoBehaviour {
     public InputManger input;
+    public GameController GC;
     public Vector3 pos;
     public Vector3 vel;
     public bool imSafe;
@@ -19,12 +20,13 @@ public class AI : MonoBehaviour {
     private float delay = 0.5f;
     public float shotDdelay = 0.5f;
     GameObject[] players;
-    GameObject targget;
+    public GameObject targget;
 
     void Start () {
         pos = GetComponent<Transform>().position;
         vel = GetComponent<Rigidbody2D>().velocity;
         input = GetComponent<InputManger>();
+        GC = GameObject.Find("GameController").GetComponent<GameController>();
 
     }
 
@@ -48,7 +50,8 @@ public class AI : MonoBehaviour {
         input.lbUp = true;
 
         seek();
-        charge();
+        if(!GC.gameOver)
+            charge();
         usePickUp();
 
 
@@ -81,25 +84,26 @@ public class AI : MonoBehaviour {
             }
 
         }
-
-        if(shotDdelay >= 0.5f) { 
-            if(!charging) {
-                objCharge = Random.Range(0.8f, 1);
-                charging = true;
+        if (!chargingUlt) { 
+            if(shotDdelay >= 0.5f) { 
+                if(!charging) {
+                    objCharge = Random.Range(0.8f, 1);
+                    charging = true;
+                }
+                if(charging && GetComponent<Shoot>().shotCharge < objCharge){
+                    input.rt = 1;
+                }
+                else if(charging && GetComponent<Shoot>().shotCharge >= objCharge){ // try to fix crazy bullets here
+                    aim();
+                    side = (targget.GetComponent<Transform>().position.x < pos.x) ? -1 : 1;
+                    input.rt = 0;
+                    charging = false;
+                    shotDdelay = 0;
+                }
             }
-            if(charging && GetComponent<Shoot>().shotCharge < objCharge){
-                input.rt = 1;
+            else {
+                shotDdelay += Time.deltaTime;
             }
-            else if(charging && GetComponent<Shoot>().shotCharge >= objCharge){ // try to fix crazy bullets here
-                aim();
-                side = (targget.GetComponent<Transform>().position.x < pos.x) ? -1 : 1;
-                input.rt = 0;
-                charging = false;
-                shotDdelay = 0;
-            }
-        }
-        else {
-            shotDdelay += Time.deltaTime;
         }
 
     }
