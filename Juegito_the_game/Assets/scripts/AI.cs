@@ -70,6 +70,7 @@ public class AI : MonoBehaviour {
         
     void charge() {
         input.lt = 0;
+        chargingUlt = false;
         if (close && GetComponent<Shoot>().ultCharge == 100 && !chargingUlt) {
             chargingUlt = true;     
         }

@@ -23,13 +23,32 @@ public class CameraMovement : MonoBehaviour {
     public float minPosY;
     public bool staticMap;
 
+    public float shakeDuration = 0f;
+    public float originalDuration = 0f;
+    public float shakeAmount = 0.7f;
+    public float decreaseFactor = 1.0f;
+    public bool shaking = false;
+    public bool letsShake = false;
+    Vector3 originalPos;
 
+    public float lastPlayersNum;
+
+    private void Start()
+    {
+        numPlayers = players.Length;
+        lastPlayersNum = numPlayers;
+        originalDuration = shakeDuration;
+    }
     // Update is called once per frame
     void Update (){
 
         numPlayers = players.Length;
         UpdatePlayers();
         float movement = cameraSpeed * Time.deltaTime;
+
+        if (numPlayers != lastPlayersNum)
+            letsShake = true;
+            shake();
 
         if (numPlayers == 2 && !staticMap){
 
@@ -55,8 +74,27 @@ public class CameraMovement : MonoBehaviour {
 
         if (numPlayers == 1 && !staticMap)
             transform.position = GameObject.FindGameObjectWithTag("Player").gameObject.transform.position + new Vector3(0,0,-1);
-        
 
+        lastPlayersNum = numPlayers;
+    }
+
+    void shake() {
+        if (letsShake) { 
+            if (!shaking) originalPos = GetComponent<Transform>().localPosition;
+            if (shakeDuration > 0)
+            {
+                shaking = true;
+                GetComponent<Transform>().localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+
+                shakeDuration -= Time.deltaTime * decreaseFactor;
+            }
+            else
+            {
+                shaking = letsShake = false;
+                shakeDuration = originalDuration;
+                GetComponent<Transform>().localPosition = originalPos;
+            }
+        }
     }
 
     void UpdatePlayers(){
