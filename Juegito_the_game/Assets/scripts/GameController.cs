@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour{
     public GameObject winner;
     public GameObject gameOverParent;
     public Text winnerText;
-    bool gameOver;
+    public bool gameOver;
     public bool paused = true;
     public int numPlayers;
     public int gameMode;
@@ -20,6 +20,10 @@ public class GameController : MonoBehaviour{
     public bool waitOver = false;
     public GameObject colorPanel;
     public Image colorPanelColor;
+    public bool suddenDeath = false;
+    bool suddenDeathBegin = false;
+    int respawnLocationX = -4;
+    int respawnLocationY = 7;
 
     private static int SortByName(GameObject o1, GameObject o2)
     {
@@ -43,6 +47,11 @@ public class GameController : MonoBehaviour{
         gameTimer -= Time.deltaTime;
         PauseGame();
         gameOver = CheckForPlayers();
+
+        if (suddenDeath)
+        {
+            suddenDeathMode();
+        }
 
         if (gameOver||gameTimer<=0f)
             GameOver();
@@ -107,59 +116,63 @@ public class GameController : MonoBehaviour{
 
     void GameOver(){
 
-        gameOverParent.SetActive(true);
-        
         if (winner == null)
         {
-            int little = players[0].GetComponent<RespawnDeathCount>().deaths;
-            int littleNumber = 0;
-            for (int i = 0; i < players.Length; i++)
+            suddenDeath = true;
+
+            /* int little = players[0].GetComponent<RespawnDeathCount>().deaths;
+             int littleNumber = 0;
+             for (int i = 0; i < players.Length; i++)
+             {
+                 if (little > players[i].GetComponent<RespawnDeathCount>().deaths)
+                 {
+                     littleNumber = i;
+                     little = players[i].GetComponent<RespawnDeathCount>().deaths;
+                 }
+             }
+             winner= players[littleNumber];*/
+        }
+        else
+        {
+
+            gameOverParent.SetActive(true);
+
+            winnerText.text = "Winner: " + winner.name;
+
+            if (winner.name == "Player1")
             {
-                if (little > players[i].GetComponent<RespawnDeathCount>().deaths)
-                {
-                    littleNumber = i;
-                    little = players[i].GetComponent<RespawnDeathCount>().deaths;
-                }
+                Color col = colorPanelColor.color;
+                col = new Color32(0, 33, 255, 255);
+                colorPanelColor.color = col;
             }
-            winner= players[littleNumber];
+            else
+            if (winner.name == "Player2")
+            {
+                Color col = colorPanelColor.color;
+                col = new Color32(15, 220, 255, 255);
+                colorPanelColor.color = col;
+            }
+            else
+            if (winner.name == "Player3")
+            {
+                Color col = colorPanelColor.color;
+                col = new Color32(0, 228, 34, 255);
+                colorPanelColor.color = col;
+            }
+            else
+            if (winner.name == "Player4")
+            {
+                Color col = colorPanelColor.color;
+                col = new Color32(253, 183, 0, 255);
+                colorPanelColor.color = col;
+            }
+
+
+
+
+            if (Input.GetButtonDown("P1_XboxX") || Input.GetButtonDown("P2_XboxX") || Input.GetButtonDown("P3_XboxX") || Input.GetButtonDown("P4_XboxX"))
+                SceneManager.LoadScene("Menu");
         }
-
-        winnerText.text = "Winner: " + winner.name;
-
-        if (winner.name == "Player1")
-        {
-            Color col = colorPanelColor.color;
-            col = new Color32(0, 33, 255, 255);
-            colorPanelColor.color = col;
-        }
-        else
-        if (winner.name == "Player2")
-        {
-            Color col = colorPanelColor.color;
-            col = new Color32(15, 220, 255, 255);
-            colorPanelColor.color = col;
-        }
-        else
-        if (winner.name == "Player3")
-        {
-            Color col = colorPanelColor.color;
-            col = new Color32(0, 228, 34, 255);
-            colorPanelColor.color = col;
-        }
-        else
-        if (winner.name == "Player4")
-        {
-            Color col = colorPanelColor.color;
-            col = new Color32(253, 183, 0, 255);
-            colorPanelColor.color = col;
-        }
-
-
-        
-
-        if (Input.GetButtonDown("P1_XboxX")|| Input.GetButtonDown("P2_XboxX") || Input.GetButtonDown("P3_XboxX") || Input.GetButtonDown("P4_XboxX"))
-            SceneManager.LoadScene("Menu");
-
     }
 
    void PauseGame()
@@ -192,6 +205,31 @@ public class GameController : MonoBehaviour{
             GetComponent<PickUpSpawner>().enabled = true;
         }
    }
+
+    void suddenDeathMode()
+    {
+        if (!suddenDeathBegin)
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                Vector2 newPos;
+                newPos.x = respawnLocationX;
+                newPos.y = respawnLocationY;
+                players[i].transform.position = newPos;
+                respawnLocationX += 6;
+
+            }
+
+            PauseGame();
+            StartCoroutine(CountDown(2));
+            suddenDeathBegin = true;
+        }
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i].GetComponent<Shoot>().ultCharge = 100;
+        }
+    }
 
     IEnumerator CountDown(float toWait)
     {
