@@ -7,14 +7,17 @@ public class MainMenu : MonoBehaviour {
 
 	public void PlayLevel1()
     {
+        StaticValues.level = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void PlayLevel2()
     {
+        StaticValues.level = 2;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
     public void PlayLevel3()
     {
+        StaticValues.level = 3;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
 

@@ -11,19 +11,24 @@ public class GameController : MonoBehaviour{
     public GameObject[] playerScores = new GameObject[4];
     public GameObject winner;
     public GameObject gameOverParent;
+    public GameObject suddenDeathPanel;
+    public GameObject timer;
     public Text winnerText;
     public bool gameOver;
-    public bool paused = true;
+    public bool paused;
     public int numPlayers;
     public int gameMode;
     public float gameTimer;
-    public bool waitOver = false;
+    public bool waitOver;
     public GameObject colorPanel;
     public Image colorPanelColor;
-    public bool suddenDeath = false;
-    bool suddenDeathBegin = false;
+    public bool suddenDeath;
+    bool suddenDeathBegin;
+    bool suddenDeathTimer;
     int respawnLocationX = -4;
     int respawnLocationY = 7;
+    int timerSD;
+    RigidbodyConstraints2D previousConstraints;
 
     private static int SortByName(GameObject o1, GameObject o2)
     {
@@ -32,10 +37,16 @@ public class GameController : MonoBehaviour{
 
     // Use this for initialization
     void Start (){
+        suddenDeathTimer = false;
+        paused = true;
+        waitOver = false;
+        suddenDeath = false;
+        suddenDeathBegin = false;
         CheckForPlayers();
         SetPlayers();
         gameOver = false;
         gameOverParent.SetActive(false);
+        timer.SetActive(false);
        
         
         StartCoroutine(CountDown(4));
@@ -120,17 +131,6 @@ public class GameController : MonoBehaviour{
         {
             suddenDeath = true;
 
-            /* int little = players[0].GetComponent<RespawnDeathCount>().deaths;
-             int littleNumber = 0;
-             for (int i = 0; i < players.Length; i++)
-             {
-                 if (little > players[i].GetComponent<RespawnDeathCount>().deaths)
-                 {
-                     littleNumber = i;
-                     little = players[i].GetComponent<RespawnDeathCount>().deaths;
-                 }
-             }
-             winner= players[littleNumber];*/
         }
         else
         {
@@ -210,19 +210,57 @@ public class GameController : MonoBehaviour{
     {
         if (!suddenDeathBegin)
         {
-            for (int i = 0; i < players.Length; i++)
+            if (StaticValues.level != 2)
             {
-                Vector2 newPos;
-                newPos.x = respawnLocationX;
-                newPos.y = respawnLocationY;
-                players[i].transform.position = newPos;
-                respawnLocationX += 6;
+                for (int i = 0; i < players.Length; i++)
+                {
+                    Vector2 newPos;
+                    newPos.x = respawnLocationX;
+                    newPos.y = respawnLocationY;
+                    players[i].transform.position = newPos;
+                    respawnLocationX += 6;
+                    players[i].GetComponent<Rigidbody2D>().isKinematic = true;
+                    players[i].GetComponent<Rigidbody2D>().isKinematic = false;
+                    previousConstraints = players[i].GetComponent<Rigidbody2D>().constraints;
+                    players[i].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
+                }
+            }
+            else
+            {
+                respawnLocationX = -6;
+                for (int i = 0; i < players.Length; i++)
+                {
+                    Vector2 newPos;
+                    newPos.x = respawnLocationX;
+                    newPos.y = respawnLocationY;
+                    players[i].transform.position = newPos;
+                    respawnLocationX += 6;
+                    players[i].GetComponent<Rigidbody2D>().isKinematic = true;
+                    players[i].GetComponent<Rigidbody2D>().isKinematic = false;
+                    previousConstraints = players[i].GetComponent<Rigidbody2D>().constraints;
+                    players[i].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+
+                }
             }
 
-            PauseGame();
-            StartCoroutine(CountDown(2));
+            timer.SetActive(false);
+            paused = true;
+            suddenDeathPanel.SetActive(true);
+            timerSD = (int)Time.time;
             suddenDeathBegin = true;
+        }
+
+        if (Time.time > timerSD+2 && suddenDeathTimer == false)
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].GetComponent<Rigidbody2D>().constraints = previousConstraints;
+            }
+            timer.SetActive(true);
+            paused = false;
+            suddenDeathPanel.SetActive(false);
+            suddenDeathTimer = true;
         }
 
         for (int i = 0; i < players.Length; i++)
@@ -236,6 +274,7 @@ public class GameController : MonoBehaviour{
         yield return new WaitForSeconds(toWait);
         paused = false;
         waitOver = true;
+        timer.SetActive(true);
         foreach (GameObject p in players)
         {
             p.GetComponent<Shoot>().enabled = true;
@@ -245,4 +284,5 @@ public class GameController : MonoBehaviour{
         GetComponent<PickUpSpawner>().enabled = true;
 
     }
+
 }
