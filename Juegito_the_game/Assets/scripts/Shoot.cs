@@ -42,13 +42,19 @@ public class Shoot : MonoBehaviour
 
         }
 
+        GetComponentInChildren<ParticleSystem>().Stop();
+
         if (timer > cadency && GetComponent<InputManger>().rt == 0 && shotCharge != 0){
 
             if (DirectionJoyL == new Vector2(0, 0))
                 DirectionJoyL = new Vector2(GameObject.Find(player).GetComponent<Movement>().side, 0); // multiplicate that for 1 or -1 depending on were are you facing
 
             SpawnBullet();
-          
+
+
+            GetComponentInChildren<ParticleSystem>().Play();
+           
+
 
             venom = false;
 
