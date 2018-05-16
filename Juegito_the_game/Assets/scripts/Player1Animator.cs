@@ -6,6 +6,7 @@ public class Player1Animator : MonoBehaviour {
 
     public Animator animator;
     public Animator shieldAnimator;
+    public Animator weaponAnimator;
     public bool shielded;
     public Transform ult;
 
@@ -32,6 +33,7 @@ public class Player1Animator : MonoBehaviour {
         Crouch();
         Shield();
         UltAnimation();
+        WeaponAnimation();
         xAxis = Mathf.Abs(leftJoystickX);
 
     }
@@ -87,6 +89,13 @@ public class Player1Animator : MonoBehaviour {
         if(gameObject.GetComponent<Shoot>().ultCharge==100)
         ult.gameObject.SetActive(true);
         else ult.gameObject.SetActive(false);
+
+    }
+
+    private void WeaponAnimation() {
+        if (gameObject.GetComponent<Shoot>().ltDown > 0)
+            weaponAnimator.SetBool("isCharging", true);
+        else weaponAnimator.SetBool("isCharging", false);
 
     }
 
