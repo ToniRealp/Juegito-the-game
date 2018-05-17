@@ -12,11 +12,17 @@ public class MenuStates : MonoBehaviour {
     public GameObject charMenu;
     public GameObject levelMenu;
     public GameObject levelMenuSing;
+    public GameObject volumeMenu;
+    public GameObject displayMenu;
+    public GameObject controlsImage;
 
     public GameObject singlePB;
     public GameObject twoPPB;
     public GameObject optPB;
     public GameObject multiPB;
+    public GameObject volumePB;
+    public GameObject displayPB;
+    public GameObject controlsPB;
 
     // Use this for initialization
     void Start () {
@@ -32,7 +38,7 @@ public class MenuStates : MonoBehaviour {
         {
             state = 0;
         }
-        if (optionsMenu.activeSelf)
+        if (optionsMenu.activeSelf && (!displayMenu.activeSelf) && (!volumeMenu.activeSelf) && (!controlsImage.activeSelf))
         {
             state = 1;
         }
@@ -47,6 +53,18 @@ public class MenuStates : MonoBehaviour {
         if (levelMenuSing.activeSelf)
         {
             state = 4;
+        }
+        if (volumeMenu.activeSelf)
+        {
+            state = 5;
+        }
+        if (displayMenu.activeSelf)
+        {
+            state = 6;
+        }
+        if (controlsImage.activeSelf)
+        {
+            state = 7;
         }
 
 
@@ -85,6 +103,31 @@ public class MenuStates : MonoBehaviour {
                 levelMenuSing.SetActive(false);
                 mainMenu.SetActive(true);
                 myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(singlePB);
+            }
+        }
+        if(state == 5)
+        {
+            if(Input.GetButtonDown("P1_XboxB"))
+            {
+                volumeMenu.SetActive(false);
+                myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(volumePB);
+            }
+        }
+        if(state == 6)
+        {
+            if (Input.GetButtonDown("P1_XboxB"))
+            {
+                displayMenu.SetActive(false);
+                myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(displayPB);
+            }
+
+        }
+        if (state == 7)
+        {
+            if (Input.GetButtonDown("P1_XboxB"))
+            {
+                controlsImage.SetActive(false);
+                myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(controlsPB);
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GameController : MonoBehaviour{
 
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour{
     int respawnLocationY = 7;
     int timerSD;
     RigidbodyConstraints2D previousConstraints;
+    public AudioMixer audioMixer;
 
     private static int SortByName(GameObject o1, GameObject o2)
     {
@@ -37,6 +39,7 @@ public class GameController : MonoBehaviour{
 
     // Use this for initialization
     void Start (){
+        audioMixer.SetFloat("Volume", StaticValues.volume);
         suddenDeathTimer = false;
         paused = true;
         waitOver = false;
