@@ -64,6 +64,7 @@ public class AI : MonoBehaviour {
     void usePickUp()
     {
         input.y = false;
+        charging = false;
         if (GetComponent<EffectsManager>().next != EffectsManager.Effect.None)
             input.y = true;
     }
