@@ -60,11 +60,13 @@ public class BallMovement : MonoBehaviour{
 
     void OnCollisionEnter2D(Collision2D other){
 
-        if (other.gameObject != player) { 
+        if (other.gameObject != player) {
 
-            if (other.gameObject.tag == "Player"){
+            if (other.gameObject.tag == "Player")
+            {
 
-                if (player.GetComponent<Shoot>().ultCharge < 100) {
+                if (player.GetComponent<Shoot>().ultCharge < 100)
+                {
 
                     if (charge > maxCharge - 0.1f)
                         chargeInt = escalarCarga * 4;
@@ -75,7 +77,7 @@ public class BallMovement : MonoBehaviour{
                     else if (charge > maxCharge / 2f)
                         chargeInt = escalarCarga;
 
-                    else 
+                    else
                         chargeInt = 2;
 
                 }
@@ -85,17 +87,21 @@ public class BallMovement : MonoBehaviour{
 
                 if (gameObject.tag == "Ulti")
                     Destroy(other.gameObject);
-                
+
                 otherRb.AddForce(force);
 
-                if (player.GetComponent<Shoot>().venom) 
+                if (player.GetComponent<Shoot>().venom)
                     other.gameObject.GetComponent<Movement>().venom = -1;
 
-                Destroy(gameObject);
+                GetComponent<ParticleSystem>().Play();
+                //Destroy(gameObject);
             }
 
             else
+            {
+                GetComponent<ParticleSystem>().Play();
                 Destroy(gameObject);
+            }
 
         }
     }

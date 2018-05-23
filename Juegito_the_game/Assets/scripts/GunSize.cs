@@ -19,14 +19,14 @@ public class GunSize : MonoBehaviour {
         if (ultCharge < 1.5 && ltButton !=0 && !growingS)
         {
             growingU = true;
-            GetComponent<Transform>().transform.localScale = GetComponent<Transform>().transform.localScale + new Vector3(ultCharge / 10, ultCharge / 10, 0);
+            GetComponent<Transform>().transform.localScale = GetComponent<Transform>().transform.localScale + new Vector3(ultCharge / 14, ultCharge / 14, 0);
             
         }
 
         if (charge < 1 && rtButton != 0 && !growingU)
         {
             growingS = true;
-            GetComponent<Transform>().transform.localScale = GetComponent<Transform>().transform.localScale + new Vector3(charge / 14, charge / 14, 0);
+            GetComponent<Transform>().transform.localScale = GetComponent<Transform>().transform.localScale + new Vector3(charge / 18, charge / 18, 0);
         }
 
         if (ltButton == 0 && rtButton == 0) {
