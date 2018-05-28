@@ -93,13 +93,11 @@ public class BallMovement : MonoBehaviour{
                 if (player.GetComponent<Shoot>().venom)
                     other.gameObject.GetComponent<Movement>().venom = -1;
 
-                GetComponent<ParticleSystem>().Play();
-                //Destroy(gameObject);
+                Destroy(gameObject);
             }
 
             else
             {
-                GetComponent<ParticleSystem>().Play();
                 Destroy(gameObject);
             }
 
